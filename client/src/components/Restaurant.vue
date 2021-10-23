@@ -1,12 +1,13 @@
 <template>
   <div>
     <h1>Détail du restaurant {{restaurant.name}} </h1>
-    <p>
+
       <ul>
+        <li>Nom: {{restaurant.name}}</li>
         <li>cuisine: {{restaurant.cuisine}}</li>
         <li>Ville: {{restaurant.borough}} </li>
       </ul>
-    </p>
+    
   </div>
 </template>
 
@@ -48,14 +49,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
-  margin: 40px 0 0;
+  margin: 140px 0 0;
 }
 ul {
   list-style-type: none;
   padding: 0;
 }
 li {
-  display: inline-block;
   margin: 0 10px;
 }
 a {

@@ -1,6 +1,12 @@
 
 <template>
   <div >
+
+ <md-dialog-alert
+      :md-active.sync="notFound"
+      md-content="Aucun restaurant ne correspond à votre recherche"
+      md-confirm-text="ouff!" />
+
     <h2>{{msg}}</h2>
       <form @submit.prevent="ajouterRestaurant($event)">
         <label>
@@ -12,6 +18,8 @@
 
         <button>Ajouter</button>
     </form>
+   
+  
 
     <h1>Nombre de restaurants : {{nombreRestaurantsTotal}}</h1>
     <p>Chercher par nom: 
@@ -27,7 +35,7 @@
     <md-button :disabled="page===0" @click="pagePrecedente()">Précédente</md-button>&nbsp;&nbsp;
     <md-button :disabled="page===nbrePagesTotal" @click="pageSuivante()">Suivante</md-button>
     <br>
-    <md-table v-model="restaurants" md-sort="name" md-sort-order="asc" md-card>
+    <md-table class="table-md" v-model="restaurants" md-sort="name" md-sort-order="asc" md-card>
         <md-table-toolbar>
         <h1 class="md-title">Restaurants</h1>
       </md-table-toolbar>
@@ -40,12 +48,17 @@
         <md-table-cell md-label="Name" md-sort-by="name"> {{ item.name }}</md-table-cell>
         <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
         <md-table-cell md-label="Action" > 
-<router-link :to=" '/restaurant/' + item._id">[Détail d'un Restaurant]
+        <router-link :to=" '/restaurant/' + item._id"><button class="md-accent"><md-icon>read_more</md-icon></button>  
         </router-link>
         </md-table-cell>
       </md-table-row>
     </md-table>
   </div>
+
+
+
+   
+
 </template>
 
 <script>
@@ -62,7 +75,9 @@ export default {
             pageSize: 10,
             nbrePagesTotal: 0,
             msg: '',
-            nomRestoRechercher: ''
+            nomRestoRechercher: '',
+
+             notFound: false
         }
     },
         mounted() {
@@ -98,6 +113,9 @@ export default {
                                 console.dir(this.restaurants);
                                 this.nombreRestaurantsTotal = resJs.count;
                                 this.nbrePagesTotal = Math.round(this.nombreRestaurantsTotal / this.pageSize);
+                                 if(this.nombreRestaurantsTotal <= 0){
+                                    this.notFound = true
+                                }else{this.notFound = false}
                             });
                     })
                     .catch((err) => {
@@ -106,7 +124,14 @@ export default {
             },
             chercherResto:
                 _.debounce(function () {
+
                     this.getRestaurantsFromServer();
+                   
+                   // this.getRestaurantsFromServer();
+
+                    
+        
+                   
                 }, 1000),
             supprimerRestaurant(r) {
                 let url = "http://localhost:8080/api/restaurants/" + r._id;
@@ -174,5 +199,9 @@ export default {
 <style scoped>
 h1{
     color: blue;
+}
+.table-md{
+    display: flex;
+    align-items: center;
 }
 </style>
