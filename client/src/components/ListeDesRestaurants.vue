@@ -1,48 +1,26 @@
 <template>
   <div>
-    <md-dialog-alert
-      :md-active.sync="notFound"
-      md-content="Aucun restaurant ne correspond à votre recherche"
-      md-confirm-text="ouff!"
-    />
 
-    <h2>{{ msg }}</h2>
-    <div>
-      <md-button class="md-raised md-primary" @click="restoModal=true">
-        Ajouter un nouveau restaurant
-      </md-button>
-      <md-dialog :md-active.sync="restoModal">
-        <md-dialog-title>Ajout d'un nouveau restaurant</md-dialog-title>
-        
-        <form @submit.prevent="ajouterRestaurant($event)">
-
-          <md-dialog-content>
-              <md-field>
-                <label>Nom</label>
-                <md-input v-model="nom" required></md-input>
-              </md-field>
-              <md-field>
-                <label>Cuisine</label>
-                <md-input v-model="cuisine" required></md-input>
-              </md-field>
-              <md-field>
-                <label>Ville</label>
-                <md-input v-model="borough" ></md-input>
-              </md-field>
-          </md-dialog-content>
-
-          <md-dialog-actions>
-            <md-button class="md-primary" @click="restoModal= false">Close</md-button>
-            <md-button class="md-primary">Ajouter</md-button>
-          </md-dialog-actions>
-        </form>
-
-    </md-dialog>
-    </div>
-
-    
-
-    
+    <md-toolbar>
+      <md-list class="infosResto">
+      <md-list-item>
+        <md-icon>dinner_dining</md-icon>
+        <span class="md-list-item-text"><b>Nombre de restaurants par page :  </b></span>
+        <p><input type="range" min=2 max=100 value=10 
+        @change="getRestaurantsFromServer()" v-model="pageSize">{{pageSize}}</p>
+      </md-list-item>
+      <md-list-item>
+        <md-icon><span class="material-icons">restaurant</span></md-icon>
+        <span class="md-list-item-text"><b>Nombre de restaurants: </b></span>
+        <p>{{ nombreRestaurantsTotal }}</p>
+      </md-list-item>
+      <md-list-item>
+         <md-icon>pages</md-icon>
+        <span class="md-list-item-text"><b>Nombre de Pages Total :  </b></span>
+        <p>{{ nbrePagesTotal }}</p>
+      </md-list-item>
+      </md-list>
+    </md-toolbar>
     <br />
       <md-table 
         class="table-md"
@@ -52,11 +30,36 @@
         md-card>
         <md-table-toolbar>
           <div class="md-toolbar-section-start">
-            <p>Nombre de restaurants par page: 
-        <input 
-        @change="getRestaurantsFromServer()"
-        type="range" min=2 max=100 value=10 v-model="pageSize">
-        {{pageSize}}</p>
+            <md-button class="md-raised md-primary" @click="restoModal=true">
+              <md-icon><span class="material-icons">add</span></md-icon>Ajouter un nouveau restaurant
+            </md-button>
+            <md-dialog :md-active.sync="restoModal">
+              <md-dialog-title>Ajout d'un nouveau restaurant</md-dialog-title>
+              
+              <form @submit.prevent="ajouterRestaurant($event)">
+
+                <md-dialog-content>
+                    <md-field>
+                      <label>Nom</label>
+                      <md-input v-model="nom" name="nom" required></md-input>
+                    </md-field>
+                    <md-field>
+                      <label>Cuisine</label>
+                      <md-input v-model="cuisine" name="cuisine" required></md-input>
+                    </md-field>
+                    <md-field>
+                      <label>Ville</label>
+                      <md-input v-model="borough" name="borough"></md-input>
+                    </md-field>
+                </md-dialog-content>
+
+                <md-dialog-actions>
+                  <md-button class="md-primary" @click="restoModal= false">Close</md-button>
+                  <md-button type="submit" class="md-primary">Ajouter</md-button>
+                </md-dialog-actions>
+              </form>
+
+            </md-dialog>
           </div>
 
           <md-field  class="md-toolbar-section-end">
@@ -64,6 +67,11 @@
               </md-input>
           </md-field>
         </md-table-toolbar>
+
+        <md-table-empty-state
+        md-label="Aucun restaurant trouvé"
+        :md-description="`Aucun restaurant ne correspond à votre recherche!`">
+        </md-table-empty-state>
 
         <md-table-row 
           :style="{ backgroundColor: getColor(index) }"
@@ -81,11 +89,8 @@
           </md-table-cell>
         </md-table-row>
       </md-table>
-      <md-table-toolbar>
+      <md-toolbar>
         <div class="md-toolbar-section-start">
-          <p>Nombre de restaurants : {{ nombreRestaurantsTotal }}</p>
-            <br> 
-          <p>Nombre de Pages Total : {{ nbrePagesTotal }}</p>
         
         </div>
         <div  class="md-toolbar-section-end">
@@ -96,7 +101,7 @@
           <md-button :disabled="page === nbrePagesTotal" @click="pageSuivante()"
           >Suivante</md-button>
         </div>
-      </md-table-toolbar>
+      </md-toolbar>
       
   </div>
 </template>
@@ -108,9 +113,10 @@ export default {
   name: "ListeDesRestaurants",
   data: () => {
     return {
-      restaurants: [],
+      restaurants : [],
       nom: "",
       cuisine: "",
+      borough : "",
       nombreRestaurantsTotal: 0,
       page: 0,
       pageSize: 10,
@@ -122,7 +128,6 @@ export default {
     };
   },
   mounted() {
-    console.log("mounted");
     this.getRestaurantsFromServer();
   },
   methods: {
@@ -149,7 +154,6 @@ export default {
           responseJSON.json().then((resJs) => {
             // Maintenant resJs est un vrai objet JavaScript
             this.restaurants = resJs.data;
-            console.log("Restaurants récupérés");
             console.dir(this.restaurants);
             this.nombreRestaurantsTotal = resJs.count;
             this.nbrePagesTotal = Math.round(
@@ -222,6 +226,8 @@ export default {
         });
       this.nom = "";
       this.cuisine = "";
+      this.borough = "";
+
     },
     getColor(index) {
       return index % 2 ? "lightBlue" : "pink";
@@ -238,7 +244,11 @@ h1 {
 .table-md {
   display: flex;
 }
-.md-toolbar-section-start p {
+ul.md-list.infosResto {
     display: contents;
 }
+ul.md-list.infosResto b {
+    font-size: 13px;
+}
+
 </style>

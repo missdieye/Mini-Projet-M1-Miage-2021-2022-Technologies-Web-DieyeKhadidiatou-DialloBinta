@@ -89,20 +89,6 @@ a.logo span {
   color: lightBlue;
 }
 
-/*TOGGLE*/
-
-.toggle {
-  float: left;
-  padding-right: 15px;
-  margin-top: 20px;
-}
-
-.toggle .toggleIcon {
-  cursor: pointer;
-  display: inline-block;
-  font-size: 20px;
-}
-
 /*SIDEBAR*/
 
 .nav-collapse.collapse {
