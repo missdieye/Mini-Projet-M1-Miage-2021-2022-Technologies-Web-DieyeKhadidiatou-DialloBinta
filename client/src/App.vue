@@ -1,47 +1,43 @@
 <template>
   <div id="app">
-    <section id="container">
-      <!--Header-->
-      <header class="header">
-        <!--Toggle-->
-        <div class="toggle">
-          <md-icon class="toggleIcon">menu</md-icon>
-        </div>
-
-        <!--logo-->
-        <a href="./" class="logo"
-          ><b>Rest<span>aurant</span></b></a
-        >
-      </header>
-
-      <!--sidebar-->
-      <aside>
-        <div id="sidebar" class="nav-collapse">
-          <ul class="sidebar-menu" >
-            <li class="elt">
-              <router-link to="/">
+    <md-app class="nav" md-mode="fixed">
+     <!--Header-->
+      <md-app-toolbar class="header">
+        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+          <md-icon>menu</md-icon>
+        </md-button>
+        <span class="md-title"><a href="./" class="logo"
+          ><b>DIA<span>DIE</span></b></a
+        ></span>
+      </md-app-toolbar>
+      
+     <!--Sidebar-->
+      <md-app-drawer :md-active.sync="menuVisible" id="sidebar">
+        <md-list class="sidebar-menu">
+          <md-list-item class="elt">
+            <router-link to="/">
                 <md-icon>home</md-icon>
                 <span>Home</span></router-link
               >
-            </li>
-            <li class="elt">
-              <router-link to="/">
+          </md-list-item>
+          <md-list-item class="elt">
+            <router-link to="/">
                 <md-icon>info</md-icon>
                 <span>Détail d'un Restaurant</span></router-link
               >
-            </li>
-            <li class="elt">
-              <router-link to="/restaurant">
+          </md-list-item>
+          <md-list-item class="elt">
+            <router-link to="/restaurant">
                 <md-icon>thumb_up</md-icon>
                 <span>HelloWorld</span>
               </router-link>
-            </li>
-          </ul>
-        </div>
-      </aside>
-
-      <router-view id="mainContent"></router-view>
-    </section>
+          </md-list-item>
+        </md-list>
+      </md-app-drawer>
+      <md-app-content>
+        <router-view id="mainContent"></router-view>
+       </md-app-content>
+    </md-app>
   </div>
 </template>
 
@@ -49,6 +45,9 @@
 export default {
   name: "App",
   components: {},
+  data: () => ({
+    menuVisible: true
+  })
 };
 </script>
 
@@ -59,7 +58,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: -20px;
+  margin-top: 0px;
 }
 
 /*HEADER*/
@@ -110,17 +109,23 @@ a.logo span {
   display: inline;
 }
 
+.nav {
+    display: initial !important;
+}
+
 #sidebar {
   width: 210px;
   height: 100%;
   position: fixed;
-  background: pink;
+  background: pink !important;
+  margin-top: 60px;
+
 }
 
 ul.sidebar-menu {
   margin: -2px 0 0;
   padding: 0;
-  margin-top: 75px;
+  BACKGROUND: pink !important
 }
 
 ul.sidebar-menu li a {
@@ -143,7 +148,6 @@ ul.sidebar-menu li a.active,
 ul.sidebar-menu li a:hover,
 ul.sidebar-menu li a:focus {
   background: lightBlue;
-  color: #fff;
   display: block;
   text-decoration: none;
 }
@@ -161,6 +165,4 @@ ul.sidebar-menu li a:focus {
   margin-left: 210px;
   padding-top :60px; ;
 }
-
-
 </style>
