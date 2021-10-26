@@ -1,6 +1,14 @@
 <template>
   <div>
-    <h1>Détail du restaurant {{restaurant.name}} </h1>
+    <md-toolbar class="md-large">
+      <div class="md-toolbar-row">
+        <md-avatar>
+        <img src="/vuematerial/assets/logo.png" alt="Avatar">
+      </md-avatar>
+        <h3 class="md-title">{{restaurant.name}}</h3>
+      </div>
+    </md-toolbar>
+    <h1>Détail du restaurant  </h1>
 
       <ul>
         <li>Nom: {{restaurant.name}}</li>

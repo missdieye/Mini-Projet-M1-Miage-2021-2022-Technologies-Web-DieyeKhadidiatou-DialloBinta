@@ -1,39 +1,50 @@
 <template>
   <div id="app">
-    <md-app class="nav" md-mode="fixed">
+    <md-app class="nav">
      <!--Header-->
-      <md-app-toolbar class="header">
-        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+
+      <md-app-toolbar md-elevation="0">
+        <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
-        <span class="md-title"><a href="./" class="logo"
-          ><b>DIA<span>DIE</span></b></a
+        <span class="md-title">
+          <a href="./" class="logo"><b>DIA<span>DIE</span></b></a
         ></span>
       </md-app-toolbar>
       
      <!--Sidebar-->
-      <md-app-drawer :md-active.sync="menuVisible" id="sidebar">
-        <md-list class="sidebar-menu">
-          <md-list-item class="elt">
+
+      <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini" class="sidebar">
+        <md-toolbar class="md-transparent" md-elevation="0">
+          <div class="md-toolbar-section-end">
+            <md-button class="md-icon-button md-dense" @click="toggleMenu">
+              <md-icon>keyboard_arrow_left</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+
+        <md-list class="listeMenu">
+          <md-list-item >
             <router-link to="/">
-                <md-icon>home</md-icon>
-                <span>Home</span></router-link
-              >
+              <md-icon>home</md-icon>
+              <span class="md-list-item-text">Home</span>
+            </router-link>
           </md-list-item>
-          <md-list-item class="elt">
+          <md-list-item >
             <router-link to="/">
-                <md-icon>info</md-icon>
-                <span>Détail d'un Restaurant</span></router-link
-              >
+              <md-icon>info</md-icon>
+              <span class="md-list-item-text">Détail d'un Restaurant</span>
+            </router-link>
           </md-list-item>
-          <md-list-item class="elt">
+          <md-list-item >
             <router-link to="/restaurant">
-                <md-icon>thumb_up</md-icon>
-                <span>HelloWorld</span>
-              </router-link>
+              <md-icon>thumb_up</md-icon>
+              <span class="md-list-item-text">HelloWorld</span> 
+            </router-link>
           </md-list-item>
         </md-list>
       </md-app-drawer>
+
       <md-app-content>
         <router-view id="mainContent"></router-view>
        </md-app-content>
@@ -46,8 +57,13 @@ export default {
   name: "App",
   components: {},
   data: () => ({
-    menuVisible: true
-  })
+    menuVisible: false
+  }),
+    methods: {
+      toggleMenu () {
+        this.menuVisible = !this.menuVisible
+      }
+    }
 };
 </script>
 
@@ -61,17 +77,12 @@ export default {
   margin-top: 0px;
 }
 
-/*HEADER*/
+.md-app {
+    min-height: 350px;
+    border: 1px solid rgba(#000, .12);
+  }
 
-.header {
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 2000;
-  background: pink;
-  height: 60px;
-  padding: 0 20px;
-}
+
 
 /*LOGO*/
 a.logo {
@@ -88,67 +99,32 @@ a.logo b {
 a.logo span {
   color: lightBlue;
 }
+a.logo b {
+  color: pink;
+}
 
 /*SIDEBAR*/
+.sidebar a {
+    display: contents;
+} 
 
-.nav-collapse.collapse {
-  display: inline;
+.listeMenu .md-list-item.active,
+.listeMenu .md-list-item :hover,
+.listeMenu .md-list-item :focus {
+  background-color: pink !important;
+  text-decoration: none !important;
 }
 
-.nav {
-    display: initial !important;
-}
-
-#sidebar {
-  width: 210px;
-  height: 100%;
-  position: fixed;
-  background: pink !important;
-  margin-top: 60px;
-
-}
-
-ul.sidebar-menu {
-  margin: -2px 0 0;
-  padding: 0;
-  BACKGROUND: pink !important
-}
-
-ul.sidebar-menu li a {
-  color: red;
-  text-decoration: none;
-  display: block;
-  padding: 15px 0 15px 10px;
-  font-size: 12px;
-  outline: none;
-}
-
-ul.sidebar-menu li span {
-  text-decoration: none;
-  padding: 15px 0 15px 10px;
-  font-size: 12px;
-  outline: none;
-}
-
-ul.sidebar-menu li a.active,
-ul.sidebar-menu li a:hover,
-ul.sidebar-menu li a:focus {
-  background: lightBlue;
-  display: block;
-  text-decoration: none;
+.sidebar span {
+  padding: 20px 15px 15px 20px;
+  font-size: 15px;
+  margin-left: 10px;
+  color: lightblue;
 }
 
 
-.elt {
-  outline: none;
-  text-decoration: none;
-	margin-top: 25px;
-}
-
-/*MAIN*/
-
-#mainContent {
-  margin-left: 210px;
-  padding-top :60px; ;
+.md-drawer.md-app-drawer.sidebar {
+    width: 250px
+;
 }
 </style>
