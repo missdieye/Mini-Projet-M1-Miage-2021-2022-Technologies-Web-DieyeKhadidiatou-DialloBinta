@@ -173,9 +173,6 @@ a {
     margin-right: 150px;
 }
 
-.galerieCard {
-    height: 480px;
-  }
 
   .md-card {
     width: 320px;
