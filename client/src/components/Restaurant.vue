@@ -90,17 +90,26 @@
         
         
       </md-tab>
-      <md-tab id="tab-video" md-label="Vidéo"></md-tab>
-      <md-tab id="tab-map" md-label="Map"></md-tab>
+      <md-tab id="tab-video" md-label="Vidéo">
+              <video-embed class="youtubeVideo" src="https://youtu.be/KHU393NXKEk"></video-embed>
+      
+      </md-tab>
+      <md-tab id="tab-map" md-label="Map">
+          <Map/>
+      </md-tab>
     </md-tabs>
-
-    
   </div>
+  
 </template>
 
 <script>
+
+import Map  from './Map.vue';
 export default {
   name: 'Restaurant',
+  components : {
+    Map
+  },
   props: {
   },
   computed: {
@@ -194,5 +203,10 @@ a {
 .buttonInfo span {
     color: lightblue;
 }
+
+div#tab-map {
+    height: 650px !important;
+}
+
 
 </style>

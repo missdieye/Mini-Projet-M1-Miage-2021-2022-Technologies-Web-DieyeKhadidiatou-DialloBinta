@@ -7,13 +7,16 @@ import VueRouter from 'vue-router'
 import ListeDesRestaurants from './components/ListeDesRestaurants.vue';
 import HelloWorld from './components/HelloWorld.vue';
 import Restaurant from './components/Restaurant.vue';
-import vmodal from 'vue-js-modal'
+import vmodal from 'vue-js-modal';
+import Embed from 'v-video-embed'
+
 
 
 Vue.config.productionTip = false
 Vue.use(VueMaterial)
 Vue.use(VueRouter)
 Vue.use(vmodal)
+Vue.use(Embed);
 
 //Définition des routes
 const router = new VueRouter({
