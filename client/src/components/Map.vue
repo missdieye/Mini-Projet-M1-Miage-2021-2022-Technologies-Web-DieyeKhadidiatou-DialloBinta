@@ -1,25 +1,32 @@
 <template>
- <l-map
-   :center="center"
+  <div class="">
+  <md-toolbar md-elevation="0" class="md-accent infosIcone">
+    <h3 class="md-title">La position du restaurant {{name}} sur la carte est marquée par l'icone : <img src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/64/000000/external-restaurant-bar-and-restaurant-icongeek26-linear-colour-icongeek26.png" alt="">.</h3>
+  </md-toolbar>
+  <div>
+    <l-map
+   :center="[lattitude,longitude]"
    :zoom="zoom"
    class="map"
    ref="map"
    @update:zoom="zoomUpdated"
    @update:center="centerUpdated"
- >
-   <l-tile-layer
-     :url="url"
-   >
-   </l-tile-layer>
+  >
+    <l-tile-layer
+      :url="url"
+    >
+    </l-tile-layer>
 
-   <l-marker
-   :lat-lng="[ 49.114910, 6.178810 ]"
- >
-    <l-icon ref="icon">
-     <img class="restaurant-icon" :src="imageUrl"/>
-   </l-icon>
-    </l-marker>
-   </l-map>
+    <l-marker
+    :lat-lng="[lattitude,longitude]">
+        <l-icon ref="icon">
+          <img class="restaurant-icon" :src="imageUrl"/>
+        </l-icon>
+      </l-marker>
+  </l-map>
+  </div>
+  
+</div>
 </template>
 
 <script>
@@ -28,6 +35,11 @@ import 'leaflet/dist/leaflet.css';
 
 export default {
   name:"Map",
+  props: {
+    lattitude : Number,
+    longitude : Number,
+    name : String
+  },
  components: {
    LMap,
    LTileLayer,
@@ -38,7 +50,6 @@ export default {
  data () {
    return {
      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-     center: [ 49.114910, 6.178810 ],
      zoom: 12,
      imageUrl : 'https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/64/000000/external-restaurant-bar-and-restaurant-icongeek26-linear-colour-icongeek26.png'
    }
@@ -46,21 +57,33 @@ export default {
  methods: {
    zoomUpdated (zoom) {
      this.zoom = zoom;
-     console.log(this.markers)
    },
    centerUpdated (center) {
      this.center = center;
    }
+
  }
 }
 </script>
 
 <style>
 @import "~leaflet/dist/leaflet.css";
+
  .map {
    position: absolute;
    width: 100%;
    height: 100%;
-   overflow :hidden
+   overflow :hidden;
+ }
+
+  .md-toolbar.md-accent.infosIcone {
+      display: block;
+      margin-bottom: 25px;
+      position: fixed;
+      z-index: 1000;
+  }
+
+  .md-title{
+   text-align: center;
  }
 </style>

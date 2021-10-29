@@ -91,11 +91,10 @@
         
       </md-tab>
       <md-tab id="tab-video" md-label="Vidéo">
-              <video-embed class="youtubeVideo" src="https://youtu.be/KHU393NXKEk"></video-embed>
-      
+        <video-embed class="youtubeVideo" src="https://youtu.be/KHU393NXKEk"></video-embed>
       </md-tab>
       <md-tab id="tab-map" md-label="Map">
-          <Map/>
+          <Map :lattitude="this.lalattitude" :longitude="this.lalongitude" :name="this.name"/>
       </md-tab>
     </md-tabs>
   </div>
@@ -104,6 +103,7 @@
 
 <script>
 
+import 'leaflet/dist/leaflet.css';
 import Map  from './Map.vue';
 export default {
   name: 'Restaurant',
@@ -120,7 +120,10 @@ export default {
   data :function() {
     return {
       restaurant : null,
-      infoRestoModal : false
+      infoRestoModal : false,
+      lalongitude: 0,
+      lalattitude : null,
+      name: ''
     }
   },
   mounted() {
@@ -132,8 +135,12 @@ export default {
       return response.json();
     })
     .then(data => {
-      console.log(data.restaurant.name)
+      ///console.log(data.restaurant);
       this.restaurant = data.restaurant;
+      this.lalattitude=data.restaurant.address.coord[1];
+      this.lalongitude=data.restaurant.address.coord[0]
+      this.name=data.restaurant.name
+      console.log(this.lalattitude,this.lalongitude);
     })
   },
   methods :{
@@ -205,7 +212,7 @@ a {
 }
 
 div#tab-map {
-    height: 650px !important;
+    height: 1000px !important;
 }
 
 
