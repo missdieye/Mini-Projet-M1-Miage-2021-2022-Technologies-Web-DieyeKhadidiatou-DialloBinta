@@ -7,6 +7,8 @@ import VueRouter from 'vue-router'
 import ListeDesRestaurants from './components/ListeDesRestaurants.vue';
 import HelloWorld from './components/HelloWorld.vue';
 import Restaurant from './components/Restaurant.vue';
+import Menu from './components/Menu.vue';
+import CarteDesPlats from './components/CarteDesPlats.vue';
 import vmodal from 'vue-js-modal';
 import Embed from 'v-video-embed'
 
@@ -29,6 +31,15 @@ const router = new VueRouter({
       path:'/restaurant/:id',
       component: Restaurant
     },
+    {
+      path:'/menu',
+      component: Menu,
+    },
+    {
+     
+    path:'/cartedesplats',
+    component: CarteDesPlats,
+     },
     {
       path:'/hello',
       component: HelloWorld ,
