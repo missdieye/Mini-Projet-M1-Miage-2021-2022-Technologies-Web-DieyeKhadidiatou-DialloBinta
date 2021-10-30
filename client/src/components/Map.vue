@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="mapping">
   <md-toolbar md-elevation="0" class="md-accent infosIcone">
     <h3 class="md-title">La position du restaurant {{name}} sur la carte est marquée par l'icone : <img src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/64/000000/external-restaurant-bar-and-restaurant-icongeek26-linear-colour-icongeek26.png" alt="">.</h3>
   </md-toolbar>
@@ -71,9 +71,9 @@ export default {
 
  .map {
    position: absolute;
-   width: 100%;
-   height: 100%;
-   overflow :hidden;
+   width: 100% !important;
+   height: 100% !important;
+   overflow :hidden !important;
  }
 
   .md-toolbar.md-accent.infosIcone {
@@ -86,4 +86,8 @@ export default {
   .md-title{
    text-align: center;
  }
+
+ .mapping {
+    height: 2000px;
+}
 </style>

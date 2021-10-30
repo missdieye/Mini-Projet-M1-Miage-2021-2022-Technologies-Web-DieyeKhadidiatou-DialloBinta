@@ -31,7 +31,7 @@
       </div>
     </md-toolbar>
     <md-tabs class="restoTabs" md-alignment="centered">
-      <md-tab id="tab-galerie" md-label="Galerie">
+      <md-tab id="tab-galerie" @click="mappage= false" md-label="Galerie">
         <div class="galerieCard">
           <md-card>
             <md-card-media>
@@ -90,15 +90,17 @@
         
         
       </md-tab>
-      <md-tab id="tab-video" md-label="Vidéo">
+      <md-tab id="tab-video" @click="mappage= false" md-label="Vidéo" >
         <video-embed class="youtubeVideo" src="https://youtu.be/KHU393NXKEk"></video-embed>
       </md-tab>
-      <md-tab id="tab-map" md-label="Map">
-          <Map :lattitude="this.lalattitude" :longitude="this.lalongitude" :name="this.name"/>
+      <md-tab  @click="mappage= true" md-label="Map">
       </md-tab>
     </md-tabs>
+    <md-content  v-if="mappage">
+      <Map :lattitude="this.lalattitude" :longitude="this.lalongitude" :name="this.name"/>
+    </md-content>
   </div>
-  
+          
 </template>
 
 <script>
@@ -123,7 +125,8 @@ export default {
       infoRestoModal : false,
       lalongitude: 0,
       lalattitude : null,
-      name: ''
+      name: '',
+      mappage : false
     }
   },
   mounted() {
@@ -214,6 +217,8 @@ a {
 div#tab-map {
     height: 1000px !important;
 }
+
+
 
 
 </style>
