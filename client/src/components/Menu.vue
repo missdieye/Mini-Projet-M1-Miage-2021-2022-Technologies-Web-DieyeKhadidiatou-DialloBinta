@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import $ from "lodash";
 export default {
 
   name: 'Menu',
@@ -28,15 +27,18 @@ export default {
   },
   data:function(){
       return {
-    
-     cards: [
-        { title: 'Macaron', src: 'https://res.cloudinary.com/landry-bete/image/upload/v1488769144/dessert14_trnhnj.jpg', description:'Is this thing French ?'},
-        { title: 'Tajine', src: 'https://res.cloudinary.com/landry-bete/image/upload/v1525135352/tajine_mfnbd8.jpg', description:'Moroccan people seem to love that dish...'},
-        { title: 'Cake', src: 'https://res.cloudinary.com/landry-bete/image/upload/v1525135530/cake_lnh2hn.jpg', description:'Eat healthy my boy!'},
-    ]
-   } 
+        menuDemidi: [],
+        menuGastronomique: [],
+      } 
   },
-  mounted: function(){$('.collapsible').collapsible();}
+  methods :{
+    getMenuDemidi(){
+
+    },
+    getMenuGastronomique(){
+
+    }
+  }
   }
 
 
