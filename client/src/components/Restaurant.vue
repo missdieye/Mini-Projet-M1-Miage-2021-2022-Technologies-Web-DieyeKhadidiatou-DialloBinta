@@ -31,6 +31,12 @@
       </div>
     </md-toolbar>
     <md-tabs class="restoTabs" md-alignment="centered">
+      <md-tab id="tab-carte" @click="mappage= false" md-label="Carte" >
+        <CarteDesPlats/>
+      </md-tab>
+      <md-tab id="tab-menu" @click="mappage= false" md-label="Menu" >
+        <Menu :hordOeuvres="this.hordOeuvres" :boissons="this.boisson" :desserts="this.dessert" :plats="this.plats" />
+      </md-tab>
       <md-tab id="tab-galerie" @click="mappage= false" md-label="Galerie">
         <div class="galerieCard">
           <md-card>
@@ -87,8 +93,6 @@
             </md-card-media>
           </md-card>
         </div>
-        
-        
       </md-tab>
       <md-tab id="tab-video" @click="mappage= false" md-label="Vidéo" >
         <video-embed class="youtubeVideo" src="https://youtu.be/KHU393NXKEk"></video-embed>
@@ -99,18 +103,22 @@
     <md-content  v-if="mappage">
       <Map :lattitude="this.lalattitude" :longitude="this.lalongitude" :name="this.name"/>
     </md-content>
-  </div>
-          
+  </div>         
 </template>
 
 <script>
 
 import 'leaflet/dist/leaflet.css';
 import Map  from './Map.vue';
+import CarteDesPlats from "./CarteDesPlats.vue";
+import Menu from "./Menu.vue";
+
 export default {
   name: 'Restaurant',
   components : {
-    Map
+    Map,
+    CarteDesPlats,
+    Menu
   },
   props: {
   },
@@ -126,11 +134,22 @@ export default {
       lalongitude: 0,
       lalattitude : null,
       name: '',
-      mappage : false
+      mappage : false,
+      hordOeuvres : null,
+      plats : null, 
+      dessert: null,
+      boisson : null
+      
     }
   },
   mounted() {
-    console.log("avant affichage");
+    //Menu
+    this.hordOeuvres= CarteDesPlats.data().hordOeuvres;
+    this.plats= CarteDesPlats.data().plats;
+    this.dessert= CarteDesPlats.data().desserts;
+    this.boisson= CarteDesPlats.data().boissons;
+
+    console.log("avant affichage", this.plats);
     console.log("ID + " + this.id)
     let url= "http://localhost:8080/api/restaurants/" + this.id;
     fetch(url)
@@ -138,12 +157,14 @@ export default {
       return response.json();
     })
     .then(data => {
-      ///console.log(data.restaurant);
+
       this.restaurant = data.restaurant;
+
+      //Map
       this.lalattitude=data.restaurant.address.coord[1];
       this.lalongitude=data.restaurant.address.coord[0]
       this.name=data.restaurant.name
-      console.log(this.lalattitude,this.lalongitude);
+      console.log('rtgnssn,sh',this.lalattitude,this.lalongitude);
     })
   },
   methods :{

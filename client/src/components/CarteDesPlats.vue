@@ -212,7 +212,6 @@ export default {
   },
   data: function(){
       return{
-
         hordOeuvres : [
           { id:1, nom: 'Salade de Légumes', src: 'saladesLegumes.jpg', description:"La salade composée c'est un vrai plat complet. Une base de salades de votre choix en mélange, des herbes aromatiques fraîches, une vinaigrette légère et une garniture choisie avec soin.",prix:"10 €"},
           { id:2, nom: 'Frittes', src: 'frittes.jpg', description:"La frite est un bâtonnet de pomme de terre cuit par friture dans une graisse animale ou une huile végétale.",prix:"15 €"},
@@ -272,7 +271,6 @@ export default {
     display: inline-block;
     vertical-align: top;
     overflow: auto;
-    border: 1px solid rgba(#000, .12);
   }
 
   button.md-button.md-icon-button.voirPlus {

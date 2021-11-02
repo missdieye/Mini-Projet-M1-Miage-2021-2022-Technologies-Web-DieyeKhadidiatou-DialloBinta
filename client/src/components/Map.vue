@@ -73,7 +73,7 @@ export default {
    position: absolute;
    width: 100% !important;
    height: 100% !important;
-   overflow :hidden !important;
+   overflow : hidden !important;
  }
 
   .md-toolbar.md-accent.infosIcone {
