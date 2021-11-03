@@ -74,7 +74,7 @@
                     <md-card-expand>
                       <md-card-actions md-alignment="space-between">
                         <div>
-                          <md-button class="md-raised prix" disabled>Prix : {{desserts[dessertCDP ].prix}}</md-button>
+                          <md-button class="md-raised prix" disabled>Prix : {{desserts[dessertCDP ].prix}} €</md-button>
                         </div>
                         <md-card-expand-trigger>
                           <md-button class="md-icon-button voirPlus">
@@ -102,7 +102,6 @@
         </md-list>
       </div>
     </div>
-
     <div class="viewport">
       <div class="list">
         <md-list >
@@ -202,7 +201,6 @@
         </md-list>
       </div>
     </div>
-
   
   </div>
 </template>

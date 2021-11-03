@@ -37,13 +37,13 @@
             </router-link>
           </md-list-item>
           <md-list-item >
-            <router-link to="/restaurant">
+            <router-link to="/menu">
               <md-icon>restaurant_menu</md-icon>
               <span class="md-list-item-text">Menu</span> 
             </router-link>
           </md-list-item>
           <md-list-item >
-            <router-link to="/restaurant">
+            <router-link to="/commander">
               <md-icon>shopping_cart</md-icon>
               <span class="md-list-item-text">Commander</span> 
             </router-link>

@@ -105,7 +105,7 @@
         </md-list>
       </div>
       <md-toolbar :md-elevation="1">
-        <md-button class="md-raised prix" disabled>Prix : {{this.getPrix(this.prixMenuMidi)}} €</md-button>
+        <md-button class="md-raised prix" disabled>Prix : {{Math.round(this.getPrix(this.prixMenuMidi)*10/10)}} €</md-button>
       </md-toolbar>
     </div>
     <div class="viewport">
@@ -186,7 +186,7 @@
         </md-list>
       </div>
       <md-toolbar :md-elevation="1">
-        <md-button class="md-raised prix" disabled>Prix : {{this.getPrix(this.prixMenuGastro)}} €</md-button>
+        <md-button class="md-raised prix" disabled>Prix : {{Math.round(this.getPrix(this.prixMenuGastro)*10/10)}} €</md-button>
       </md-toolbar>
     </div>  
 
@@ -195,42 +195,81 @@
 </template>
 
 <script>
+
 export default {
 
   name: 'Menu',
   props: {
-    hordOeuvres : [] ,
-    plats : [],
-    desserts :[],
-    boissons : [],
-    hordOeuvresGastro : [] ,
-    platsGastro : [],
-    dessertsGastro :[],
-    boissonsGastro : [],
       
   },mounted() {
     //Appel des Fonctions pour obtenir aléatoirement des menus de midi et leur prix
-    this.prixHO = this.getmenuDemidi(0,this.hordOeuvres.length,this.hordOeuvresMidi,this.hordOeuvres)
-    this.prixPlats = this.getmenuDemidi(0,this.plats.length,this.platsMidi,this.plats);
-    this.prixD = this.getmenuDemidi(0,this.desserts.length,this.dessertsMidi,this.desserts)
-    this.prixB=this.getmenuDemidi(0,this.boissons.length,this.boissonsMidi,this.boissons)
+    this.prixHO = this.getmenuDemidi(0,this.hordOeuvres.length,this.hordOeuvresMidi,this.hordOeuvres)/3;
+    this.prixPlats = this.getmenuDemidi(0,this.plats.length,this.platsMidi,this.plats)/3;
+    this.prixD = this.getmenuDemidi(0,this.desserts.length,this.dessertsMidi,this.desserts)/3;
+    this.prixB=this.getmenuDemidi(0,this.boissons.length,this.boissonsMidi,this.boissons)/3;
 
     //Calcul du prix total du menu sans le pourcentage de réduction
-    this.prixMenuMidi=this.prixHO+this.prixPlats+this.prixD+this.prixD;
+    this.prixMenuMidi=this.prixHO+this.prixPlats+this.prixD+this.prixD/4;
 
     //Appel des Fonctions pour obtenir aléatoirement des menus Gastronomique et leur prix
-    this.prixHOG = this.getMenuGastronomique(0,this.hordOeuvresGastro.length,this.hordOeuvresGastrono,this.hordOeuvresGastro)
-    this.prixPlatsG = this.getMenuGastronomique(0,this.platsGastro.length,this.platsGastrono,this.platsGastro);
-    this.prixDG = this.getMenuGastronomique(0,this.dessertsGastro.length,this.dessertsGastrono,this.dessertsGastro);
+    this.prixHOG = this.getMenuGastronomique(0,this.hordOeuvresGastro.length,this.hordOeuvresGastrono,this.hordOeuvresGastro)/2;
+    this.prixPlatsG = this.getMenuGastronomique(0,this.platsGastro.length,this.platsGastrono,this.platsGastro)/2;
+    this.prixDG = this.getMenuGastronomique(0,this.dessertsGastro.length,this.dessertsGastrono,this.dessertsGastro)/2;
 
     //Calcul du prix total du menu sans le pourcentage de réduction
-    this.prixMenuGastro=this.prixHOG+this.prixPlatsG+this.prixDG+this.prixDG;
+    this.prixMenuGastro=this.prixHOG+this.prixPlatsG+this.prixDG/3;
 
     console.log('gjhgvbn,',this.prixMenuGastro, 'ghj',this.getPrix(this.prixMenuGastro))
     
   }, 
   data:function(){
       return {
+        hordOeuvres : [
+          { id:1, nom: 'Salade de Légumes', src: 'saladesLegumes.jpg', description:"La salade composée c'est un vrai plat complet. Une base de salades de votre choix en mélange, des herbes aromatiques fraîches, une vinaigrette légère et une garniture choisie avec soin.",prix:10},
+          { id:2, nom: 'Frittes', src: 'frittes.jpg', description:"La frite est un bâtonnet de pomme de terre cuit par friture dans une graisse animale ou une huile végétale.",prix:15},
+          { id:3, nom: 'Fruits de Mer', src: 'fruitdeMer.jpg', description:"Un plateau de fruits de mer constitué entièrement de crustacés, mollusques et coquillages de mer.Il est servi avec des condiments tels que sauce mayonnaise, sauce cocktail, et citron frais.",prix:20},
+          { id:4, nom: 'Saumon', src: 'saumon.jpg', description:"Le saumon est délicieux avec de nombreux légumes ! Essayez-le avec des épinards, des poireaux, des courgettes, du chou-fleur, des carottes, des salsifis ou encore des brocolis.",prix:12},
+          { id:5, nom: 'Salade de Tomate', src: 'saladesTomates.jpg', description:"À base de tomates fraîches assaisonnées de sésame et de pérille, c'est le parfait remontant après une journée bien remplie.",prix:14}
+        ],
+        plats : [
+          { id:1, nom: 'Brochettes', src: 'brochettes.jpg', description:'Is this thing French ?',prix:14},
+          { id:2, nom: 'Pattes Tomates', src: 'pattesTomate.jpg', description:'Moroccan people seem to love that dish...',prix:14},
+          { id:3, nom: 'Riz Curry', src: 'rizCurry.jpg', description:'Eat healthy my boy!',prix:14},
+          { id:4, nom: 'Riz Poulet', src: 'rizPoulets.jpg', description:'Eat healthy my boy!',prix:14},
+          { id:5, nom: 'Steak et Frittes', src: 'steakFrittes.jpg', description:'Eat healthy my boy!',prix:14}
+        ],
+        desserts :[
+          { id:1, nom: 'Beignet Rose', src: 'beignetRosePaillettes.jpg', description:'Is this thing French ?',prix:14},
+          { id:2, nom: 'Smoothies', src: 'bocauxDessert.jpg', description:'Moroccan people seem to love that dish...',prix:14},
+          { id:3, nom: 'Brownies', src: 'brownies.jpg', description:'Eat healthy my boy!',prix:14},
+          { id:4, nom: 'Gateau Framboise', src: 'GateauFramboise.jpg', description:'Eat healthy my boy!',prix:14},
+          { id:5, nom: 'Tarte Citrouille', src: 'tarteCitrouille.jpg', description:'Eat healthy my boy!',prix:14},
+        ],
+        boissons :[
+          { id:1, nom: 'Alcool', src: 'alcool.jpg', description:'Is this thing French ?',prix:14},
+          { id:2, nom: 'Café', src: 'cafe.jpg', description:'Moroccan people seem to love that dish...',prix:14},
+          { id:3, nom: 'Jus de Citron', src: 'jusCitron.jpg', description:'Eat healthy my boy!',prix:14},
+          { id:4, nom: 'jus de Melon', src: 'jusMelon.jpg', description:'Eat healthy my boy!',prix:14},
+          { id:5, nom: 'Jus de Pomme et Comcombre', src: 'jusPommeComcombre.jpg', description:'Eat healthy my boy!',prix:14},
+        ],
+        hordOeuvresGastro : [
+          { id:1, nom: "Farandole d'Oeufs", src: 'farandoledoeufs.jpg', description:"La salade composée c'est un vrai plat complet. Une base de salades de votre choix en mélange, des herbes aromatiques fraîches, une vinaigrette légère et une garniture choisie avec soin.",prix:40},
+          { id:2, nom: 'Oeuf Cocotte', src: 'oeufcocotte.jpg', description:"La frite est un bâtonnet de pomme de terre cuit par friture dans une graisse animale ou une huile végétale.",prix:10},
+          { id:3, nom: 'Patte aux Croutes de Morilles', src: 'patecroutemorilles.jpg', description:"Un plateau de fruits de mer constitué entièrement de crustacés, mollusques et coquillages de mer.Il est servi avec des condiments tels que sauce mayonnaise, sauce cocktail, et citron frais.",prix:30},
+          { id:4, nom: 'Salade Nicoise', src: 'salade-nicoise.jpg', description:"Le saumon est délicieux avec de nombreux légumes ! Essayez-le avec des épinards, des poireaux, des courgettes, du chou-fleur, des carottes, des salsifis ou encore des brocolis.",prix:20},
+        ],
+        platsGastro : [
+          { id:1, nom: 'Blanquette de Veau', src: 'blanquettedeveau.jpg', description:'Is this thing French ?',prix:40},
+          { id:2, nom: 'Cassoulet', src: 'cassoulet.jpg', description:'Moroccan people seem to love that dish...',prix:40},
+          { id:3, nom: 'Foie Gras', src: 'foiegras.jpg', description:'Eat healthy my boy!',prix:40},
+          { id:4, nom: 'Galette de Bretonne', src: 'galettebretonne.jpg', description:'Eat healthy my boy!',prix:40},
+        ],
+        dessertsGastro :[
+          { id:1, nom: 'Chocolat à Chou Vanille', src: 'chouvanillechocolat.jpg', description:'Is this thing French ?',prix:20},
+          { id:2, nom: 'Ile Flottante Crème Anglaise', src: 'ileflottantecremeanglaisecaramel.jpg', description:'Moroccan people seem to love that dish...',prix:20},
+          { id:3, nom: 'Madeleines Traditionnelles', src: 'madeleinestraditionnelles.jpg', description:'Eat healthy my boy!',prix:20},
+          { id:4, nom: 'Tarte Tartin Pomme', src: 'tartetatinpomme.jpg', description:'Eat healthy my boy!',prix:20},
+        ],
         menuGastronomique: [],
         hordOeuvresMidi : [],
         platsMidi :[],
