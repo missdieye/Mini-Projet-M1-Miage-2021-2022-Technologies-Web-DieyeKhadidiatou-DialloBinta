@@ -35,7 +35,10 @@
         <CarteDesPlats/>
       </md-tab>
       <md-tab id="tab-menu" @click="mappage= false" md-label="Menu" >
-        <Menu :hordOeuvres="this.hordOeuvres" :boissons="this.boisson" :desserts="this.dessert" :plats="this.plats" />
+        <Menu :hordOeuvres="this.hordOeuvres" :boissons="this.boisson" 
+        :desserts="this.dessert" :plats="this.plats"
+         :hordOeuvresGastro="this.hordOeuvresGastro" :platsGastro="this.platsGastro"
+        :dessertsGastro="this.dessertGastro"/>
       </md-tab>
       <md-tab id="tab-galerie" @click="mappage= false" md-label="Galerie">
         <div class="galerieCard">
@@ -138,7 +141,10 @@ export default {
       hordOeuvres : null,
       plats : null, 
       dessert: null,
-      boisson : null
+      boisson : null,
+      hordOeuvresGastro : null,
+      platsGastro : null, 
+      dessertGastro: null,
       
     }
   },
@@ -148,6 +154,9 @@ export default {
     this.plats= CarteDesPlats.data().plats;
     this.dessert= CarteDesPlats.data().desserts;
     this.boisson= CarteDesPlats.data().boissons;
+    this.hordOeuvresGastro= CarteDesPlats.data().hordOeuvresGastro;
+    this.platsGastro= CarteDesPlats.data().platsGastro;
+    this.dessertGastro= CarteDesPlats.data().dessertsGastro;
 
     console.log("avant affichage", this.plats);
     console.log("ID + " + this.id)

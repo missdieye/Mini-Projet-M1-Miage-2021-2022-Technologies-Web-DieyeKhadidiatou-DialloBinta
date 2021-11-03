@@ -75,7 +75,7 @@ export default {
    height: 100% !important;
    overflow : hidden !important;
  }
-
+  
   .md-toolbar.md-accent.infosIcone {
       display: block;
       margin-bottom: 25px;

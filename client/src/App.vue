@@ -31,15 +31,21 @@
             </router-link>
           </md-list-item>
           <md-list-item >
-            <router-link to="/">
-              <md-icon>info</md-icon>
-              <span class="md-list-item-text">Détail d'un Restaurant</span>
+            <router-link to="/cartedesplats">
+              <md-icon>menu_book</md-icon>
+              <span class="md-list-item-text">Carte</span>
             </router-link>
           </md-list-item>
           <md-list-item >
             <router-link to="/restaurant">
-              <md-icon>thumb_up</md-icon>
-              <span class="md-list-item-text">HelloWorld</span> 
+              <md-icon>restaurant_menu</md-icon>
+              <span class="md-list-item-text">Menu</span> 
+            </router-link>
+          </md-list-item>
+          <md-list-item >
+            <router-link to="/restaurant">
+              <md-icon>shopping_cart</md-icon>
+              <span class="md-list-item-text">Commander</span> 
             </router-link>
           </md-list-item>
         </md-list>

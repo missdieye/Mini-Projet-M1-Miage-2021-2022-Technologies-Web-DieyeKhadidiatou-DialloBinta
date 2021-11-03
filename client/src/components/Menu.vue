@@ -10,21 +10,21 @@
       </md-toolbar>
       <div class="list">
         <md-list >
-          <md-list-item md-expand @click="this.getmenuDemidi(0,hordOeuvres.length);">
+          <md-list-item md-expand>
             <md-toolbar :md-elevation="0">
               <md-icon>restaurant</md-icon>
               <span class="md-list-item-text md-title">Hors d'Oeuvres</span>
             </md-toolbar>
             <md-list slot="md-expand">
-              <md-list-item class="" v-for="menuMidi in this.menusMidi" :key="menuMidi">
+              <md-list-item class="" v-for="hordOeuvreMidi in this.hordOeuvresMidi" :key="hordOeuvreMidi">
                 <md-card class="md-primary md-card " md-theme="green-card">
                   <md-card-header>
                     <md-card-media>
-                      <img :src="require('../assets/horsOeuvres/' + hordOeuvres[menuMidi].src )" alt="Avatar">
+                      <img :src="require('../assets/horsOeuvres/' + hordOeuvres[hordOeuvreMidi].src )" alt="Avatar">
                     </md-card-media>
 
                     <md-card-header-text>
-                      <div class="md-title">{{hordOeuvres[menuMidi].nom}}</div>
+                      <div class="md-title">{{hordOeuvres[hordOeuvreMidi].nom}}</div>
                       </md-card-header-text>
                   </md-card-header>
                   
@@ -33,21 +33,21 @@
                 
             </md-list>
           </md-list-item>
-          <md-list-item md-expand @click="this.getmenuDemidi(0,plats.length);">
+          <md-list-item md-expand>
             <md-toolbar :md-elevation="0">
               <md-icon>dinner_dining</md-icon>
               <span class="md-list-item-text md-title">Plats</span>
             </md-toolbar>
             <md-list slot="md-expand">
-              <md-list-item class="" v-for="menuMidi in this.menusMidi" :key="menuMidi">
+              <md-list-item class="" v-for="platMidi in this.platsMidi" :key="platMidi">
                 <md-card class="md-primary md-card " md-theme="green-card">
                   <md-card-header>
                     <md-card-media>
-                      <img :src="require('../assets/plats/' + plats[menuMidi].src )" alt="Avatar">
+                      <img :src="require('../assets/plats/' + plats[platMidi].src )" alt="Avatar">
                     </md-card-media>
 
                     <md-card-header-text>
-                      <div class="md-title">{{plats[menuMidi].nom}}</div>
+                      <div class="md-title">{{plats[platMidi].nom}}</div>
                       </md-card-header-text>
                   </md-card-header>
                   
@@ -56,21 +56,21 @@
                 
             </md-list>
           </md-list-item>
-          <md-list-item md-expand @click="this.getmenuDemidi(0,desserts.length);">
+          <md-list-item md-expand >
             <md-toolbar :md-elevation="0">
               <md-icon>cake</md-icon>
               <span class="md-list-item-text md-title">Desserts</span>
             </md-toolbar>
             <md-list slot="md-expand">
-              <md-list-item class="" v-for="menuMidi in this.menusMidi" :key="menuMidi">
+              <md-list-item class="" v-for="dessertMidi in this.dessertsMidi" :key="dessertMidi">
                 <md-card class="md-primary md-card " md-theme="green-card">
                   <md-card-header>
                     <md-card-media>
-                      <img :src="require('../assets/desserts/' + desserts[menuMidi].src )" alt="Avatar">
+                      <img :src="require('../assets/desserts/' + desserts[dessertMidi].src )" alt="Avatar">
                     </md-card-media>
 
                     <md-card-header-text>
-                      <div class="md-title">{{desserts[menuMidi].nom}}</div>
+                      <div class="md-title">{{desserts[dessertMidi].nom}}</div>
                       </md-card-header-text>
                   </md-card-header>
                   
@@ -78,22 +78,22 @@
               </md-list-item>
                 
             </md-list>
-          </md-list-item>
-          <md-list-item md-expand @click="this.getmenuDemidi(0,boissons.length);">
+          </md-list-item> 
+          <md-list-item md-expand >
             <md-toolbar :md-elevation="0">
               <md-icon>local_bar</md-icon>
               <span class="md-list-item-text md-title">Boissons</span>
             </md-toolbar>
             <md-list slot="md-expand">
-              <md-list-item class="" v-for="menuMidi in this.menusMidi" :key="menuMidi">
+              <md-list-item class="" v-for="boissonMidi in this.boissonsMidi" :key="boissonMidi">
                 <md-card class="md-primary md-card " md-theme="green-card">
                   <md-card-header>
                     <md-card-media>
-                      <img :src="require('../assets/boissons/' + boissons[menuMidi].src )" alt="Avatar">
+                      <img :src="require('../assets/boissons/' + boissons[boissonMidi].src )" alt="Avatar">
                     </md-card-media>
 
                     <md-card-header-text>
-                      <div class="md-title">{{boissons[menuMidi].nom}}</div>
+                      <div class="md-title">{{boissons[boissonMidi].nom}}</div>
                       </md-card-header-text>
                   </md-card-header>
                   
@@ -101,11 +101,11 @@
               </md-list-item>
                 
             </md-list>
-          </md-list-item>
+          </md-list-item> 
         </md-list>
       </div>
       <md-toolbar :md-elevation="1">
-        <md-button class="md-raised prix" disabled>Prix : 30 €</md-button>
+        <md-button class="md-raised prix" disabled>Prix : {{this.getPrix(this.prixMenuMidi)}} €</md-button>
       </md-toolbar>
     </div>
     <div class="viewport">
@@ -114,9 +114,81 @@
       </md-toolbar>
       <div class="list">
         <md-list >
+          <md-list-item md-expand>
+            <md-toolbar :md-elevation="0">
+              <md-icon>restaurant</md-icon>
+              <span class="md-list-item-text md-title">Hors d'Oeuvres</span>
+            </md-toolbar>
+            <md-list slot="md-expand">
+              <md-list-item class="" v-for="hordOeuvreGastro in this.hordOeuvresGastrono" :key="hordOeuvreGastro">
+                <md-card class="md-primary md-card " md-theme="green-card">
+                  <md-card-header>
+                    <md-card-media>
+                      <img :src="require('../assets/gastro/horsoeuvres/' + hordOeuvresGastro[hordOeuvreGastro].src )" alt="Avatar">
+                    </md-card-media>
+
+                    <md-card-header-text>
+                      <div class="md-title">{{hordOeuvresGastro[hordOeuvreGastro].nom}}</div>
+                      </md-card-header-text>
+                  </md-card-header>
+                  
+                </md-card>
+              </md-list-item>
+                
+            </md-list>
+          </md-list-item>
+          <md-list-item md-expand>
+            <md-toolbar :md-elevation="0">
+              <md-icon>dinner_dining</md-icon>
+              <span class="md-list-item-text md-title">Plats</span>
+            </md-toolbar>
+            <md-list slot="md-expand">
+              <md-list-item class="" v-for="platGastro in this.platsGastrono" :key="platGastro">
+                <md-card class="md-primary md-card " md-theme="green-card">
+                  <md-card-header>
+                    <md-card-media>
+                      <img :src="require('../assets/gastro/plats/' + platsGastro[platGastro].src )" alt="Avatar">
+                    </md-card-media>
+
+                    <md-card-header-text>
+                      <div class="md-title">{{platsGastro[platGastro].nom}}</div>
+                      </md-card-header-text>
+                  </md-card-header>
+                  
+                </md-card>
+              </md-list-item>
+                
+            </md-list>
+          </md-list-item>
+          <md-list-item md-expand >
+            <md-toolbar :md-elevation="0">
+              <md-icon>cake</md-icon>
+              <span class="md-list-item-text md-title">Desserts</span>
+            </md-toolbar>
+            <md-list slot="md-expand">
+              <md-list-item class="" v-for="dessertGastro in this.dessertsGastrono" :key="dessertGastro">
+                <md-card class="md-primary md-card " md-theme="green-card">
+                  <md-card-header>
+                    <md-card-media>
+                      <img :src="require('../assets/gastro/dessert/' + dessertsGastro[dessertGastro].src )" alt="Avatar">
+                    </md-card-media>
+
+                    <md-card-header-text>
+                      <div class="md-title">{{dessertsGastro[dessertGastro].nom}}</div>
+                      </md-card-header-text>
+                  </md-card-header>
+                  
+                </md-card>
+              </md-list-item>
+                
+            </md-list>
+          </md-list-item> 
         </md-list>
       </div>
-    </div>
+      <md-toolbar :md-elevation="1">
+        <md-button class="md-raised prix" disabled>Prix : {{this.getPrix(this.prixMenuGastro)}} €</md-button>
+      </md-toolbar>
+    </div>  
 
   </div>
 
@@ -130,43 +202,86 @@ export default {
     hordOeuvres : [] ,
     plats : [],
     desserts :[],
-    boissons : []
+    boissons : [],
+    hordOeuvresGastro : [] ,
+    platsGastro : [],
+    dessertsGastro :[],
+    boissonsGastro : [],
       
   },mounted() {
-    console.log
-    this.getmenuDemidi(0,this.menuDemidis.length);
-    console.log(this.menusMidi,'jkll', this.menuDemidis[0])
-  },
+    //Appel des Fonctions pour obtenir aléatoirement des menus de midi et leur prix
+    this.prixHO = this.getmenuDemidi(0,this.hordOeuvres.length,this.hordOeuvresMidi,this.hordOeuvres)
+    this.prixPlats = this.getmenuDemidi(0,this.plats.length,this.platsMidi,this.plats);
+    this.prixD = this.getmenuDemidi(0,this.desserts.length,this.dessertsMidi,this.desserts)
+    this.prixB=this.getmenuDemidi(0,this.boissons.length,this.boissonsMidi,this.boissons)
+
+    //Calcul du prix total du menu sans le pourcentage de réduction
+    this.prixMenuMidi=this.prixHO+this.prixPlats+this.prixD+this.prixD;
+
+    //Appel des Fonctions pour obtenir aléatoirement des menus Gastronomique et leur prix
+    this.prixHOG = this.getMenuGastronomique(0,this.hordOeuvresGastro.length,this.hordOeuvresGastrono,this.hordOeuvresGastro)
+    this.prixPlatsG = this.getMenuGastronomique(0,this.platsGastro.length,this.platsGastrono,this.platsGastro);
+    this.prixDG = this.getMenuGastronomique(0,this.dessertsGastro.length,this.dessertsGastrono,this.dessertsGastro);
+
+    //Calcul du prix total du menu sans le pourcentage de réduction
+    this.prixMenuGastro=this.prixHOG+this.prixPlatsG+this.prixDG+this.prixDG;
+
+    console.log('gjhgvbn,',this.prixMenuGastro, 'ghj',this.getPrix(this.prixMenuGastro))
+    
+  }, 
   data:function(){
       return {
-        menuDemidis: [
-           { id:3, nom: 'Salade de Légumes', src: 'saladesLegumes.jpg', description:"La salade composée c'est un vrai plat complet. Une base de salades de votre choix en mélange, des herbes aromatiques fraîches, une vinaigrette légère et une garniture choisie avec soin.",prix:"10 €"},
-          { id:4, nom: 'Frittes', src: 'frittes.jpg', description:"La frite est un bâtonnet de pomme de terre cuit par friture dans une graisse animale ou une huile végétale.",prix:"15 €"},
-          { id:5, nom: 'Fruits de Mer', src: 'fruitdeMer.jpg', description:"Un plateau de fruits de mer constitué entièrement de crustacés, mollusques et coquillages de mer.Il est servi avec des condiments tels que sauce mayonnaise, sauce cocktail, et citron frais.",prix:"20 €"},
-          { id:6, nom: 'Saumon', src: 'saumon.jpg', description:"Le saumon est délicieux avec de nombreux légumes ! Essayez-le avec des épinards, des poireaux, des courgettes, du chou-fleur, des carottes, des salsifis ou encore des brocolis.",prix:"12 €"},
-          { id:7, nom: 'Salade de Tomate', src: 'saladesTomates.jpg', description:"À base de tomates fraîches assaisonnées de sésame et de pérille, c'est le parfait remontant après une journée bien remplie.",prix:"14 €"}
-        ],
         menuGastronomique: [],
-        menusMidi : []
+        hordOeuvresMidi : [],
+        platsMidi :[],
+        dessertsMidi : [],
+        boissonsMidi : [],
+        hordOeuvresGastrono : [],
+        platsGastrono :[],
+        dessertsGastrono : [],
+        prix : 0
       } 
   },
   methods :{
-    getmenuDemidi(min,max){
+    getmenuDemidi(min,max,tab,tab2){
+      this.prix=0
       for (let index = 0; index < 3; index++) {
+        
         min = Math.ceil(min);
         max = Math.floor(max);
         var newIndex=Math.floor(Math.random() * (max - min)) + min;
-        for (let index1= 0; index1 < this.menusMidi.length; index1++) {
-          while (newIndex === this.menusMidi[index1]) {
+        for (let index1= 0; index1 < tab.length; index1++) {
+          while (newIndex === tab[index1]) {
             newIndex=Math.floor(Math.random() * (max - min)) + min;
             index1=0;
           }    
         }
-        this.menusMidi.push(newIndex)
-      }       
+        tab.push(newIndex)
+        this.prix = this.prix + tab2[newIndex].prix;
+      }    
+      return this.prix;   
     },
-    getMenuGastronomique(){
-
+    getMenuGastronomique(min,max,tab,tab2){
+      this.prix=0
+      for (let index = 0; index < 2; index++) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        var newIndex=Math.floor(Math.random() * (max - min)) + min;
+        for (let index1= 0; index1 < tab.length; index1++) {
+          while (newIndex === tab[index1]) {
+            newIndex=Math.floor(Math.random() * (max - min)) + min;
+            index1=0;
+          }    
+        }
+        tab.push(newIndex)
+        this.prix = this.prix + tab2[newIndex].prix;
+      }       
+      return this.prix;
+    },
+    //Nous alons faire une diminition de 20% sur les menus par rapport à la somme des prix initiaux
+    getPrix(x){
+      x= x - x*0.2;
+      return x
     }
   }
 }
