@@ -7,6 +7,7 @@ import VueRouter from 'vue-router'
 import ListeDesRestaurants from './components/ListeDesRestaurants.vue';
 import Commande  from "./components/Commande.vue";
 import Restaurant from './components/Restaurant.vue';
+import Identification from './components/Identification.vue';
 import Menu from './components/Menu.vue';
 import CarteDesPlats from './components/CarteDesPlats.vue';
 import vmodal from 'vue-js-modal';
@@ -43,7 +44,11 @@ const router = new VueRouter({
     {
       path:'/commander',
       component:Commande
-    }
+    },
+    {
+    path:'/identification',
+    component: Identification,
+     }
   ]
 })
 

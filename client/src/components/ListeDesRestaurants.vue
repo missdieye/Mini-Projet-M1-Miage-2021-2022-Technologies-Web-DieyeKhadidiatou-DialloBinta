@@ -6,7 +6,7 @@
       <md-list-item>
         <md-icon>dinner_dining</md-icon>
         <span class="md-list-item-text"><b>Nombre de restaurants par page :  </b></span>
-        <p><input type="range" min=2 max=100 value=10 
+        <p><input type="range" min=2 max=100 
         @change="getRestaurantsFromServer()" v-model="pageSize">{{pageSize}}</p>
       </md-list-item>
       <md-list-item>
