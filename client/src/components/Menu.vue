@@ -1,8 +1,8 @@
 <template>
   <div >
     <md-toolbar md-elevation="1" class="md-accent infos">
-    <h3 class="md-title">Pour chaque menu, choisissez un<b> Hors d'Oeuvres</b> ,
-     un <b>Plat</b> , un <b>Dessert</b>  et un <b>boisson</b>. Le tout pour un prix!</h3>
+    <i class="infos">Pour chaque menu, choisissez un<b> Hors d'Oeuvres</b> ,
+     un <b>Plat</b> , un <b>Dessert</b>  et un <b>boisson</b>. Le tout pour un prix!</i> 
   </md-toolbar>
     <div class="viewport">
       <md-toolbar :md-elevation="1">
@@ -351,11 +351,21 @@ export default {
   }
 
   button.md-button.md-raised.prix{
-    background: pink;
+    background: #f677a8cc;
     color: black;
  }
  .md-toolbar.md-accent.infos {
     margin-bottom: 25px;
     text-align: center;
+    margin-top: 15px;
+}
+
+i.infos {
+    font-size: 20px;
+    text-align: center;
+    margin-left: 100px;
+    color: black;
+    margin-top: 10px !important;
 }
 </style>
+

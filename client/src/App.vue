@@ -103,10 +103,10 @@ a.logo b {
 }
 
 a.logo span {
-  color: lightBlue;
+  color: #3FCFD6;
 }
 a.logo b {
-  color: pink;
+  color: #db4155;
 }
 
 /*SIDEBAR*/
@@ -117,7 +117,7 @@ a.logo b {
 .listeMenu .md-list-item.active,
 .listeMenu .md-list-item :hover,
 .listeMenu .md-list-item :focus {
-  background-color: pink !important;
+  background-color: #87CEEB !important;
   text-decoration: none !important;
 }
 
@@ -125,12 +125,25 @@ a.logo b {
   padding: 20px 15px 15px 20px;
   font-size: 15px;
   margin-left: 10px;
-  color: lightblue;
+  color: black;
+  font-weight: bold;
 }
 
 
 .md-drawer.md-app-drawer.sidebar {
-    width: 250px
-;
+    width: 250px;
+}
+
+ 
+.md-toolbar.md-theme-default {
+    background: linear-gradient(lightBlue, #f677a8cc);
+}
+
+.md-list.md-theme-default {
+    background: none !important;
+}
+
+.md-drawer.md-app-drawer.sidebar {
+    background: linear-gradient(lightBlue, #f677a8cc) !important;
 }
 </style>

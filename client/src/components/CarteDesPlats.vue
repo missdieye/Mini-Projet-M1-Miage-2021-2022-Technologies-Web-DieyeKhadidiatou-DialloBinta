@@ -1,7 +1,7 @@
 <template>
  <div>
-  <md-toolbar md-elevation="1" class="md-accent infos">
-    <h3 class="md-title">Une <b> Carte </b> pour mieux voous servir. Régalez vous!</h3>
+  <md-toolbar md-elevation="1" class="md-accent">
+     <i class="infos">Une <b> Carte </b> pour mieux vous servir. Régalez vous!</i> 
   </md-toolbar>
     <div class="viewport">
       <div class="list">
@@ -326,10 +326,16 @@ export default {
   }
 
   button.md-button.md-raised.prix{
-    background: pink;
+    background: #f677a8cc;
     color: black;
  }
 
+i.infos {
+    font-size: 20px;
+    text-align: center;
+    margin-left: 400px;
+    color: black;
+}
   
 
 </style>

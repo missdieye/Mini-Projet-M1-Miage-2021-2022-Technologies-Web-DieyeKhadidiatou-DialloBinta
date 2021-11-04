@@ -8,14 +8,16 @@
                       <md-input v-model="pseudo" name="pseudo" ></md-input>
                     </md-field>
                     <md-field>
-                      <label>Mot de pass</label>
+                      <label>Mot de passe</label>
                       <md-input v-model="pass" name="pass"></md-input>
                     </md-field>
                       
                 </md-dialog-content>
 
                 <md-dialog-actions>
-                  <button type="submit"> Submit</button>
+                  <router-link to="/">
+                    <button type="submit"> Submit</button>
+                  </router-link>
                 </md-dialog-actions>
     </form>
     <div>

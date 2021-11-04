@@ -1,5 +1,13 @@
 <template>
     <div>
+        <md-toolbar class="md-large" v-if="commandePage">
+            <div class="md-toolbar-row avatar md-toolbar-section-start">
+                <md-avatar class="md-large">
+                <img src="../assets/avatarResto.png" alt="Avatar">
+            </md-avatar>
+                <h3 class="md-title">DIADIE</h3>
+            </div>
+        </md-toolbar>
         <div class="viewport">
             <md-toolbar :md-elevation="1">
                 <span class="md-title">Carte ou Menu</span>
@@ -489,58 +497,22 @@
         <md-toolbar :md-elevation="1">
             <span class="md-title">Commandes</span>
         </md-toolbar>
-        <md-table>
-        <md-table-row>
-            <md-table-head>Des</md-table-head>
-            <md-table-head md-numeric>Qtit</md-table-head>
-            <md-table-head md-numeric>Prix</md-table-head>
-        </md-table-row>
+        <md-table class="tabCom">
+            <md-table-row>
+                <md-table-head>Des</md-table-head>
+                <md-table-head md-numeric>Qtit</md-table-head>
+                <md-table-head md-numeric>Prix</md-table-head>
+            </md-table-row>
+            <md-table-row v-for="(commande) in this.commandes" :key="commande">
+                <md-table-cell >{{commande.designation}}</md-table-cell>
+                <md-table-cell v-if="commande.type=='carte'"  md-numeric>{{commande.quantite}}</md-table-cell>
+                <md-table-cell v-if="commande.type=='carte'"  md-numeric>{{commande.prix}}</md-table-cell>
+                
+                <md-table-cell v-if="commande.type=='menumidi'" md-numeric>Menu de midi</md-table-cell>
+                <md-table-cell v-if="commande.type=='menuGastro'" md-numeric>Menu Gastro</md-table-cell>
+                
+            </md-table-row>
         </md-table>
-        <div v-for="(commande) in this.commandes" :key="commande">
-        
-            <div v-if="commande.type=='carte'" >
-                <md-list slot="md-expand">
-                    <md-list-item class="tabCom">
-                        <md-table>
-                            <md-table-row>
-                                <md-table-cell >{{commande.designation}}</md-table-cell>
-                                <md-table-cell md-numeric>{{commande.quantite}}</md-table-cell>
-                                <md-table-cell md-numeric>{{commande.prix}}</md-table-cell>
-                            </md-table-row>
-                        </md-table>
-                    </md-list-item>
-                </md-list>
-            </div>
-            
-            <div v-if="commande.type=='menumidi'">
-                <md-list slot="md-expand">
-                    <md-list-item class="tabCom">
-                        <md-table>
-                            <md-table-row>
-                                <md-table-cell >{{commande.designation}}</md-table-cell>
-                                <md-table-cell md-numeric></md-table-cell>
-                                <md-table-cell md-numeric>Menu de midi</md-table-cell>
-                            </md-table-row>
-                        </md-table>
-                    </md-list-item>
-                </md-list>
-            </div>
-
-            <div v-if="commande.type=='menuGastro'">
-                <md-list slot="md-expand">
-                    <md-list-item  class="tabCom">
-                        <md-table>
-                            <md-table-row>
-                                <md-table-cell >{{commande.designation}}</md-table-cell>
-                                <md-table-cell md-numeric></md-table-cell>
-                                <md-table-cell md-numeric>Gastro</md-table-cell>
-                            </md-table-row>
-                        </md-table>
-                    </md-list-item>
-                </md-list>
-            </div>
-
-        </div>
         <md-toolbar :md-elevation="1">
             <md-button class="md-raised prix" disabled>Prix Total : {{this.getPrixCommande(commandes)}} €</md-button>
         </md-toolbar>
@@ -581,7 +553,8 @@ export default {
         fourth : false,
         activeRecap :false,
         activeRecapGastro :false,
-        toolbarCom : true
+        toolbarCom : true,
+        commandePage : true
     }
   },
   mounted() {

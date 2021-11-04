@@ -48,14 +48,18 @@
                       <md-input v-model="cuisine" name="cuisine" required></md-input>
                     </md-field>
                     <md-field>
+                      <label>Adresse</label>
+                      <md-input v-model="street" name="street"></md-input>
+                    </md-field>
+                    <md-field>
                       <label>Ville</label>
                       <md-input v-model="borough" name="borough"></md-input>
                     </md-field>
                 </md-dialog-content>
 
                 <md-dialog-actions>
-                  <md-button class="md-primary" @click="restoModal= false">Close</md-button>
-                  <md-button type="submit" class="md-primary">Ajouter</md-button>
+                  <md-button class="md-primary" @click="restoModal= false">Fermer</md-button>
+                  <md-button type="submit" class="md-primary" >Ajouter</md-button>
                 </md-dialog-actions>
               </form>
 
@@ -63,7 +67,8 @@
           </div>
 
           <md-field  class="md-toolbar-section-end">
-              <md-input @input="chercherResto()" v-model="nomRestoRechercher" placeholder="Chercher par nom:">
+              <label for="nom">Chercher par nom:</label>
+              <md-input @input="chercherResto()" v-model="nomRestoRechercher"  md-layout="box" md-dense>
               </md-input>
           </md-field>
         </md-table-toolbar>
@@ -81,11 +86,18 @@
         >
           
           <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
-          <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{item.cuisine}}</md-table-cell>
-          <md-table-cell md-label="Ville" md-sort-by="cuisine">{{item.borough}}</md-table-cell>
-          <md-table-cell md-label="Action">
-            <router-link :to="'/restaurant/' + item._id"><button class="md-accent"><md-icon>read_more</md-icon></button>
+          <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{item.cuisine}}</md-table-cell>         
+          <md-table-cell md-label="Rue" md-sort-by="street">{{item.address.street}}</md-table-cell>
+          <md-table-cell md-label="Ville" md-sort-by="borough">{{item.borough}}</md-table-cell>
+          <md-table-cell md-label="Actions">
+            <router-link :to="'/restaurant/' + item._id">
+              <md-button :style="{ backgroundColor: getColorButton(index) }" class="md-fab md-plain iconActions">
+                <md-icon>read_more</md-icon>
+              </md-button>
             </router-link>
+            <md-button :style="{ backgroundColor: getColorButton(index) }" class="md-fab md-plain iconActions" @click="voirAlert(item)">
+              <md-icon>delete</md-icon>
+            </md-button>
           </md-table-cell>
         </md-table-row>
       </md-table>
@@ -95,11 +107,11 @@
         </div>
         <div  class="md-toolbar-section-end">
           <md-button :disabled="page === 0" @click="pagePrecedente()"
-          >Précédente
+          > <b>Précédente</b> 
           </md-button
             >&nbsp;&nbsp;
           <md-button :disabled="page === nbrePagesTotal" @click="pageSuivante()"
-          >Suivante</md-button>
+          > <b>Suivante</b> </md-button>
         </div>
       </md-toolbar>
       
@@ -117,6 +129,7 @@ export default {
       nom: "",
       cuisine: "",
       borough : "",
+      street : "",
       nombreRestaurantsTotal: 0,
       page: 0,
       pageSize: 10,
@@ -125,6 +138,7 @@ export default {
       nomRestoRechercher: "",
       notFound: false,
       restoModal : false,
+      commandePage :false
     };
   },
   mounted() {
@@ -227,10 +241,33 @@ export default {
       this.nom = "";
       this.cuisine = "";
       this.borough = "";
+      this.street = "";
 
     },
     getColor(index) {
-      return index % 2 ? "lightBlue" : "pink";
+      return index % 2 ? "lightBlue" : "#f677a8cc";
+    },
+    getColorButton(index) {
+      return index % 2 ? "#f677a8cc" : "lightBlue" ;
+    },
+    voirAlert(x) {
+      this.$swal({
+          title: 'Etes-vous sûr?',
+          text: 'Vous ne pourrez plus revenir en arrière!',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Oui supprimer!',
+          cancelButtonText: 'Non annuler!',
+          showCloseButton: true,
+          showLoaderOnConfirm: true
+        }).then((result) => {
+          if(result.value) {
+            this.supprimerRestaurant(x);
+            this.$swal('Supprimer', 'Le restaurant est supprimé', 'success')
+          } else {
+            this.$swal('Annuler', 'La suppression a été annulé.', 'info')
+          }
+        })
     },
   },
 };
@@ -249,6 +286,10 @@ ul.md-list.infosResto {
 }
 ul.md-list.infosResto b {
     font-size: 13px;
+}
+
+.md-field .md-input, .md-field .md-textarea {
+    background-color: white !important;
 }
 
 </style>

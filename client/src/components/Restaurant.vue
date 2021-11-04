@@ -18,13 +18,14 @@
                   <md-list>
                     <md-list-item >Nom : <code> <md-chip>{{restaurant.name}}</md-chip></code></md-list-item>
                     <md-list-item >Cuisine : <code> <md-chip>{{restaurant.cuisine}}</md-chip></code></md-list-item>
+                    <md-list-item >Adresse : <code> <md-chip>{{restaurant.address.building}} {{restaurant.address.street}}</md-chip></code></md-list-item>
                     <md-list-item >Ville : <code> <md-chip>{{restaurant.borough}}</md-chip></code></md-list-item>
                   </md-list>
                  
                 </md-dialog-content>
 
                 <md-dialog-actions>
-                  <md-button class="md-primary" @click="infoRestoModal= false">Close</md-button>
+                  <md-button class="md-primary" @click="infoRestoModal= false">Fermer</md-button>
                 </md-dialog-actions>
 
             </md-dialog>
@@ -41,6 +42,9 @@
         :dessertsGastro="this.dessertGastro"/>
       </md-tab>
       <md-tab id="tab-galerie" @click="mappage= false" md-label="Galerie">
+        <md-toolbar md-elevation="1" class="md-accent infos">
+          <i class="infos">Photos</i> 
+        </md-toolbar>
         <div class="galerieCard">
           <md-card>
             <md-card-media>
@@ -96,11 +100,35 @@
             </md-card-media>
           </md-card>
         </div>
-      </md-tab>
-      <md-tab id="tab-video" @click="mappage= false" md-label="Vidéo" >
-        <video-embed class="youtubeVideo" src="https://youtu.be/KHU393NXKEk"></video-embed>
+        <md-toolbar md-elevation="1" class="md-accent infos">
+          <i class="infos">Vidéo</i> 
+        </md-toolbar>
+        <div class="galerieCard">
+
+          <md-card>
+            <md-card-media>
+              <video-embed class="youtubeVideo" src="https://www.youtube.com/watch?v=Ip2he1-P4Ns"></video-embed>
+            </md-card-media>
+          </md-card>
+
+          <md-card>
+            <md-card-media>
+              <video-embed class="youtubeVideo" src="https://www.youtube.com/watch?v=Czxq-yefP7U"></video-embed>
+            </md-card-media>
+          </md-card>
+
+          <md-card>
+            <md-card-media>
+              <video-embed class="youtubeVideo" src="https://www.youtube.com/watch?v=ZRnIn8IS2JA"></video-embed>
+            </md-card-media>
+          </md-card>
+        </div>
+        
       </md-tab>
       <md-tab  @click="mappage= true" md-label="Map">
+      </md-tab>
+      <md-tab id="tab-commande" @click="mappage= false" md-label="Passer une Commande" >
+        <Commande/>
       </md-tab>
     </md-tabs>
     <md-content  v-if="mappage">
@@ -115,13 +143,15 @@ import 'leaflet/dist/leaflet.css';
 import Map  from './Map.vue';
 import CarteDesPlats from "./CarteDesPlats.vue";
 import Menu from "./Menu.vue";
+import Commande from "./Commande.vue";
 
 export default {
   name: 'Restaurant',
   components : {
     Map,
     CarteDesPlats,
-    Menu
+    Menu,
+    Commande
   },
   props: {
   },
@@ -144,7 +174,7 @@ export default {
       boisson : null,
       hordOeuvresGastro : null,
       platsGastro : null, 
-      dessertGastro: null,
+      dessertGastro: null
       
     }
   },
@@ -157,6 +187,7 @@ export default {
     this.hordOeuvresGastro= CarteDesPlats.data().hordOeuvresGastro;
     this.platsGastro= CarteDesPlats.data().platsGastro;
     this.dessertGastro= CarteDesPlats.data().dessertsGastro;
+    Commande.data().commandePage =false;
 
     console.log("avant affichage", this.plats);
     console.log("ID + " + this.id)
@@ -215,7 +246,7 @@ a {
 .info i.md-icon.md-icon-font {
     font-size: 30px !important;
     margin: 20px;
-    color: lightblue;
+    color: black;
 }
 
 .info.md-toolbar-section-end {
@@ -231,23 +262,27 @@ a {
   }
 
   .restoTabs .md-tabs-navigation.md-elevation-0 {
-    background: pink;
+    background: #f677a8cc;
 }
 
 .buttonInfo  {
-    background: pink !important ;
+    background: #f677a8cc !important ;
     margin: 0 -10px;
     padding: 4px;
 }
 
 .buttonInfo span {
-    color: lightblue;
+    color: black;
 }
 
 div#tab-map {
     height: 1000px !important;
 }
-
+i.infos {
+    font-size: 20px;
+    text-align: center;
+    color: black;
+}
 
 
 

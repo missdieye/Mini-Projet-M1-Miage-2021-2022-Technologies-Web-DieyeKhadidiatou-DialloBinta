@@ -11,7 +11,9 @@ import Identification from './components/Identification.vue';
 import Menu from './components/Menu.vue';
 import CarteDesPlats from './components/CarteDesPlats.vue';
 import vmodal from 'vue-js-modal';
-import Embed from 'v-video-embed'
+import Embed from 'v-video-embed';
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 
 
@@ -20,6 +22,7 @@ Vue.use(VueMaterial)
 Vue.use(VueRouter)
 Vue.use(vmodal)
 Vue.use(Embed);
+Vue.use(VueSweetalert2);
 
 //Définition des routes
 const router = new VueRouter({

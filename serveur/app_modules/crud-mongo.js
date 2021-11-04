@@ -102,7 +102,7 @@ exports.login = async (pseudo, motDePass) => {
     let count;
 
     let query = {
-      pseudo: pseudo,
+    pseudo: pseudo,
 	  motDePass: motDePasse,  
     };
     utilisateurs = await db.collection("utilisateurs").find(query).toArray();
@@ -165,6 +165,9 @@ exports.createRestaurant = async (formData) => {
     let toInsert = {
       name: formData.nom,
       cuisine: formData.cuisine,
+      address:{
+        "street":formData.street},
+      borough : formData.borough
     };
     let data = await db.collection("restaurants").insertOne(toInsert);
     reponse = {
