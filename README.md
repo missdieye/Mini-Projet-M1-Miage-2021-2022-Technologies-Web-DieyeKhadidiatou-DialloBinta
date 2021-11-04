@@ -49,8 +49,8 @@ LEs technomogies utilisé sont:
 ## Comment contribuer
 Demander aux auteurs pour que l'on puisse créer un document contributeurs.
 ## Versionnement
-Version 1
-Version finir l'implémentation de l'authentification, pourquoi pas ajouter d'autres fonctionnalités.
+- Version 1
+- Version 2 pour finir l'implémentation de l'authentification, pourquoi pas ajouter d'autres fonctionnalités.
 ## Crédit
 
 Pour la réalisation de ce projet, nous nous sommes resourcées de :
