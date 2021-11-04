@@ -186,7 +186,7 @@
         </md-list>
       </div>
       <md-toolbar :md-elevation="1">
-        <md-button class="md-raised prix" disabled>Prix : {{Math.round(this.getPrix(this.prixMenuGastro)*10/10)}} €</md-button>
+        <md-button class="md-raised prix" disabled>Prix : {{this.prixMenuGastro}} €</md-button>
       </md-toolbar>
     </div>  
 
@@ -209,15 +209,17 @@ export default {
     this.prixB=this.getmenuDemidi(0,this.boissons.length,this.boissonsMidi,this.boissons)/3;
 
     //Calcul du prix total du menu sans le pourcentage de réduction
-    this.prixMenuMidi=this.prixHO+this.prixPlats+this.prixD+this.prixD/4;
+    this.prixMenuMidi=this.prixHO+this.prixPlats+this.prixD+this.prixD;
+    this.prixMenuMidi=Math.round(this.prixMenuMidi*10)/10;
 
     //Appel des Fonctions pour obtenir aléatoirement des menus Gastronomique et leur prix
     this.prixHOG = this.getMenuGastronomique(0,this.hordOeuvresGastro.length,this.hordOeuvresGastrono,this.hordOeuvresGastro)/2;
     this.prixPlatsG = this.getMenuGastronomique(0,this.platsGastro.length,this.platsGastrono,this.platsGastro)/2;
     this.prixDG = this.getMenuGastronomique(0,this.dessertsGastro.length,this.dessertsGastrono,this.dessertsGastro)/2;
 
-    //Calcul du prix total du menu sans le pourcentage de réduction
-    this.prixMenuGastro=this.prixHOG+this.prixPlatsG+this.prixDG/3;
+    //Calcul du prix total du menu gastronomique
+    this.prixMenuGastro=this.prixHOG+this.prixPlatsG+this.prixDG;
+    this.prixMenuGastro=Math.round(this.prixMenuGastro*10)/10;
 
     console.log('gjhgvbn,',this.prixMenuGastro, 'ghj',this.getPrix(this.prixMenuGastro))
     
