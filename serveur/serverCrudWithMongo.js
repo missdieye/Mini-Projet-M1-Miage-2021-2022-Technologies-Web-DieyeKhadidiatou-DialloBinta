@@ -167,9 +167,11 @@ app.delete('/api/restaurants/:id', (req, res) => {
 
 // login
 app.get('/api/login/:pseudo/:password', (req, res) => {
+	//Récupération des paramètres
 	var pseudo = req.params.pseudo;
 	var password = req.params.password;
-	
+
+	//Appel de  la fonction de recherche qui est dans crud-mongo.js
 	mongoDBModule.login(pseudo,password)
 		.then(data => {
 			res.send(JSON.stringify(data));

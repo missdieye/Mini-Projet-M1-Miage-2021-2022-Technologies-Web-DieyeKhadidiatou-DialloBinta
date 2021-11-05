@@ -130,6 +130,7 @@ exports.createRestaurant = async (formData) => {
     let toInsert = {
       name: formData.nom,
       cuisine: formData.cuisine,
+      //Insertion Ville et Rue 
       borough :formData.borough,
       "address.street" : formData.street
     };
@@ -220,8 +221,9 @@ exports.login= async (pseudo,motdepasse) => {
   let reponse;
 
   try {
+    //Requete de recherche 
     let myquery = { pseudo : pseudo,password : motdepasse};
-
+    //Recherche du pseudo et mot de passe
     let data = await db.collection("users").findOne(myquery);
 
     reponse = {
