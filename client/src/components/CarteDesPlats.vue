@@ -566,29 +566,17 @@ export default {
       dessertsCDP: [],
       boissonsCDP: [],
     };
-  },
-  mounted() {
-    //Appel des fonctions  pour obtenir les hors oeuvres,plats,desserts et boissons
-    this.getCartedesPlats(0, this.hordOeuvres.length, this.hordOeuvresCDP);
-    this.getCartedesPlats(0, this.plats.length, this.platsCDP);
-    this.getCartedesPlats(0, this.desserts.length, this.dessertsCDP);
-    this.getCartedesPlats(0, this.boissons.length, this.boissonsCDP);
+e la garniture avant la cuisson au four. Elle est ensuite renversée sur un plat et servie tiède.',prix:6},
+        ],
+        hordOeuvresCDP: [],
+        platsCDP :[],
+        dessertsCDP :[],
+        boissonsCDP :[],
+        commandePage : false
+      }
 
-    //Récupérer le path en cours
-    this.path = this.$route.path;
-  },
-  methods: {
-    //Méthode qui prend les 100 premiers lettres de la description
-    petitedescription(description) {
-      return description.substring(0, 100);
-    },
-
-    //Permet d'avoir de manière aléatoire  une carte
-    getCartedesPlats(min, max, tab) {
-      for (let index = 0; index < 4; index++) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        var newIndex = Math.floor(Math.random() * (max - min)) + min;
+>>>>>>> c6d6c9393093d95cc5a39a6a85c6ff47156766cc
+  var newIndex = Math.floor(Math.random() * (max - min)) + min;
         for (let index1 = 0; index1 < tab.length; index1++) {
           while (newIndex === tab[index1]) {
             newIndex = Math.floor(Math.random() * (max - min)) + min;
