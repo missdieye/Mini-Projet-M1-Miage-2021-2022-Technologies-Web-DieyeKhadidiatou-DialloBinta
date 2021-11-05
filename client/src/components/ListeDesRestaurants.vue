@@ -274,7 +274,14 @@ export default {
             //On raffraichit la vue
             this.getRestaurantsFromServer();
 
-            
+            //Alerte de succes
+            this.$swal(
+              "Félicitation!",
+              "Restaurant ajouté avec succès!",
+              "success"
+            );
+            //On raffraichit la page
+            location.reload();
           });
         })
         .catch(function (err) {
