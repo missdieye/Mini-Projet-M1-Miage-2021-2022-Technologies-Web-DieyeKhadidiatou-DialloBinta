@@ -1,8 +1,9 @@
 <template>
   <div class="identification">
-    <div classe="titre_id"> <h1>Un clique! Un repas!</h1>
-    <h2>Connectez vous pour choisir le restaurant de votre  choix</h2></div>
-   
+    <div class="divSlogan">
+      <i class="slogan">Un clic, un repas!</i><span class="emoji">&#x1F61C;</span> 
+    </div>
+    
     <div class="formulaire">
       <h1>Bienvenue!</h1>
       <md-toolbar
@@ -121,20 +122,47 @@ export default {
     .input:active {
         box-shadow: 0px 0px 5px 0px;
     }
-
-.md-content.md-app-content.md-flex.md-theme-default {
-    
-    padding: 0 !important;
-}
-
+    .button {
+        cursor: pointer;
+        user-select: none;
+    }
+    img {
+        height: 2.2rem;
+        margin: 10px;
+        user-select: none;
+    }
+    img:hover {
+        box-shadow: 0px 0px 5px 0px;
+        cursor: pointer;
+        border-radius: 200rem;
+    }
     .identification{
-      background-image: url("../assets/Plats_a_emporter\ clair\ de\ la\ plume.jpg");
+      background-image: url("../assets/background.jpg");
     }
     div#mainContent {
-      height: 520px !important;
+      height: 530px !important;
     }
-
     .titre_id{
       color :rgb(165, 85, 129) !important;
     }
+    .md-content.md-app-content.md-flex.md-theme-default {
+    padding: 0 !important;
+}
+
+  i.slogan {
+      font-weight: bold;
+      font-size: 27px;
+      color: #db4155 !important;
+  }
+  .divSlogan {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      width: 350px;
+      border-radius: 200rem;
+      margin: 0 auto;
+      background: linear-gradient(lightBlue, #f677a8cc) !important;
+  }
+  span.emoji {
+      font-size: 40px;
+  }
 </style>

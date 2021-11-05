@@ -112,8 +112,6 @@ export default {
     border: 1px solid rgba(#000, .12);
   }
 
-
-
 /*LOGO*/
 a.logo {
   font-size: 24px;
@@ -172,7 +170,7 @@ a.logo b {
 }
 
 a.deconnex {
-    background-color: #e60000;
+    background-color:#f677a8cc !important;
     border-radius: 3rem;
 }
 </style>

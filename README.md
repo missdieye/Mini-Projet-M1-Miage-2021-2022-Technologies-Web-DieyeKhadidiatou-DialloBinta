@@ -38,10 +38,9 @@ Les différentes fonctionnalités de **DIADIE** sont:
 - Une fonctionnaliré permettant d'afficher des photos et vidéos d'un restaurant;
 - Une fonctionnalité peermettant d'afficher la position d'un restaurant donné;
 - Une fonctionnalité permettant d'afficher alétaoirement une carte ainsi que des menus(menu midi, menu gastronomique) avec leur photos,descriptions et prix pour chaque restaurant. 
-- Une fonctionnalité permettant à l'utilisateur de passer une commande à la carte ou un menu.
-- Une fonctionnalité d'authentification qui permet à l'utilisateur de s'identifier avant d'accéder à l'application et se déconnecter après utilisation. 
-Dans les prochaines versions on souhaiterai permettre à l'utilisateur de créer son identifiant et de se connecter avec et lui permettre de visiter le site sans identification s'il ne souhaite pas commander.
-Pour le moment l'utilsateur peut se connecter avec les identifiants que nous avons créer nous même dans la base de données. 
+- Une fonctionnalité permettant à l'utilisateur de passer une commande à la carte ou un menu. 
+
+A l'heure où nous écrivons ces fonctionnalités nous sommes entrain de réaliser la fonctionnalité d'authentification d'un utilisateur, qui ne sera probablement pas prêt avant la date de fin de rendu. 
 ## Technologies
 LEs technomogies utilisé sont:
 - VueJS,
@@ -51,7 +50,7 @@ LEs technomogies utilisé sont:
 Demander aux auteurs pour que l'on puisse créer un document contributeurs.
 ## Versionnement
 - Version 1
-- Version 2 Ajouter d'autres fonctionnalités tels permettre à l'utilsateur de créer son compte utilsateur.
+- Version 2 pour finir l'implémentation de l'authentification, pourquoi pas ajouter d'autres fonctionnalités.
 ## Crédit
 
 Pour la réalisation de ce projet, nous nous sommes resourcées de :

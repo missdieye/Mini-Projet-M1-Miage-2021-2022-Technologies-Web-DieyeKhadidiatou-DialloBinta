@@ -411,397 +411,118 @@ export default {
         commandePage : false
       } 
   },
-  data: function () {
-    return {
-      //Liste des Hors d'Oeuvres, plats, desseerts, boissons simples et gastronomique
-      hordOeuvres: [
-        {
-          id: 1,
-          nom: "Salade de Légumes",
-          src: "saladesLegumes.jpg",
-          description:
-            "La salade composée c'est un vrai plat complet. Une base de salades de votre choix en mélange, des herbes aromatiques fraîches, une vinaigrette légère et une garniture choisie avec soin.",
-          prix: 10,
-        },
-        {
-          id: 2,
-          nom: "Frittes",
-          src: "frittes.jpg",
-          description:
-            "La frite est un bâtonnet de pomme de terre cuit par friture dans une graisse animale ou une huile végétale.",
-          prix: 15,
-        },
-        {
-          id: 3,
-          nom: "Fruits de Mer",
-          src: "fruitdeMer.jpg",
-          description:
-            "Un plateau de fruits de mer constitué entièrement de crustacés, mollusques et coquillages de mer.Il est servi avec des condiments tels que sauce mayonnaise, sauce cocktail, et citron frais.",
-          prix: 20,
-        },
-        {
-          id: 4,
-          nom: "Saumon",
-          src: "saumon.jpg",
-          description:
-            "Le saumon est délicieux avec de nombreux légumes ! Essayez-le avec des épinards, des poireaux, des courgettes, du chou-fleur, des carottes, des salsifis ou encore des brocolis.",
-          prix: 12,
-        },
-        {
-          id: 5,
-          nom: "Salade de Tomate",
-          src: "saladesTomates.jpg",
-          description:
-            "À base de tomates fraîches assaisonnées de sésame et de pérille, c'est le parfait remontant après une journée bien remplie.",
-          prix: 14,
-        },
-      ],
-      plats: [
-        {
-          id: 1,
-          nom: "Brochettes",
-          src: "brochettes.jpg",
-          description: "Is this thing French ?",
-          prix: 14,
-        },
-        {
-          id: 2,
-          nom: "Pattes Tomates",
-          src: "pattesTomate.jpg",
-          description: "Moroccan people seem to love that dish...",
-          prix: 14,
-        },
-        {
-          id: 3,
-          nom: "Riz Curry",
-          src: "rizCurry.jpg",
-          description: "Eat healthy my boy!",
-          prix: 14,
-        },
-        {
-          id: 4,
-          nom: "Riz Poulet",
-          src: "rizPoulets.jpg",
-          description: "Eat healthy my boy!",
-          prix: 14,
-        },
-        {
-          id: 5,
-          nom: "Steak et Frittes",
-          src: "steakFrittes.jpg",
-          description: "Eat healthy my boy!",
-          prix: 14,
-        },
-      ],
-      desserts: [
-        {
-          id: 1,
-          nom: "Beignet Rose",
-          src: "beignetRosePaillettes.jpg",
-          description: "Is this thing French ?",
-          prix: 14,
-        },
-        {
-          id: 2,
-          nom: "Smoothies",
-          src: "bocauxDessert.jpg",
-          description: "Moroccan people seem to love that dish...",
-          prix: 14,
-        },
-        {
-          id: 3,
-          nom: "Brownies",
-          src: "brownies.jpg",
-          description: "Eat healthy my boy!",
-          prix: 14,
-        },
-        {
-          id: 4,
-          nom: "Gateau Framboise",
-          src: "GateauFramboise.jpg",
-          description: "Eat healthy my boy!",
-          prix: 14,
-        },
-        {
-          id: 5,
-          nom: "Tarte Citrouille",
-          src: "tarteCitrouille.jpg",
-          description: "Eat healthy my boy!",
-          prix: 14,
-        },
-      ],
-      boissons: [
-        {
-          id: 1,
-          nom: "Alcool",
-          src: "alcool.jpg",
-          description: "Is this thing French ?",
-          prix: 14,
-        },
-        {
-          id: 2,
-          nom: "Café",
-          src: "cafe.jpg",
-          description: "Moroccan people seem to love that dish...",
-          prix: 14,
-        },
-        {
-          id: 3,
-          nom: "Jus de Citron",
-          src: "jusCitron.jpg",
-          description: "Eat healthy my boy!",
-          prix: 14,
-        },
-        {
-          id: 4,
-          nom: "jus de Melon",
-          src: "jusMelon.jpg",
-          description: "Eat healthy my boy!",
-          prix: 14,
-        },
-        {
-          id: 5,
-          nom: "Jus de Pomme et Comcombre",
-          src: "jusPommeComcombre.jpg",
-          description: "Eat healthy my boy!",
-          prix: 14,
-        },
-      ],
-      hordOeuvresGastro: [
-        {
-          id: 1,
-          nom: "Farandole d'Oeufs",
-          src: "farandoledoeufs.jpg",
-          description:
-            "La salade composée c'est un vrai plat complet. Une base de salades de votre choix en mélange, des herbes aromatiques fraîches, une vinaigrette légère et une garniture choisie avec soin.",
-          prix: 40,
-        },
-        {
-          id: 2,
-          nom: "Oeuf Cocotte",
-          src: "oeufcocotte.jpg",
-          description:
-            "La frite est un bâtonnet de pomme de terre cuit par friture dans une graisse animale ou une huile végétale.",
-          prix: 10,
-        },
-        {
-          id: 3,
-          nom: "Patte aux Croutes de Morilles",
-          src: "patecroutemorilles.jpg",
-          description:
-            "Un plateau de fruits de mer constitué entièrement de crustacés, mollusques et coquillages de mer.Il est servi avec des condiments tels que sauce mayonnaise, sauce cocktail, et citron frais.",
-          prix: 30,
-        },
-        {
-          id: 4,
-          nom: "Salade Nicoise",
-          src: "salade-nicoise.jpg",
-          description:
-            "Le saumon est délicieux avec de nombreux légumes ! Essayez-le avec des épinards, des poireaux, des courgettes, du chou-fleur, des carottes, des salsifis ou encore des brocolis.",
-          prix: 20,
-        },
-      ],
-      platsGastro: [
-        {
-          id: 1,
-          nom: "Blanquette de Veau",
-          src: "blanquettedeveau.jpg",
-          description: "Is this thing French ?",
-          prix: 40,
-        },
-        {
-          id: 2,
-          nom: "Cassoulet",
-          src: "cassoulet.jpg",
-          description: "Moroccan people seem to love that dish...",
-          prix: 40,
-        },
-        {
-          id: 3,
-          nom: "Foie Gras",
-          src: "foiegras.jpg",
-          description: "Eat healthy my boy!",
-          prix: 40,
-        },
-        {
-          id: 4,
-          nom: "Galette de Bretonne",
-          src: "galettebretonne.jpg",
-          description: "Eat healthy my boy!",
-          prix: 40,
-        },
-      ],
-      dessertsGastro: [
-        {
-          id: 1,
-          nom: "Chocolat à Chou Vanille",
-          src: "chouvanillechocolat.jpg",
-          description: "Is this thing French ?",
-          prix: 20,
-        },
-        {
-          id: 2,
-          nom: "Ile Flottante Crème Anglaise",
-          src: "ileflottantecremeanglaisecaramel.jpg",
-          description: "Moroccan people seem to love that dish...",
-          prix: 20,
-        },
-        {
-          id: 3,
-          nom: "Madeleines Traditionnelles",
-          src: "madeleinestraditionnelles.jpg",
-          description: "Eat healthy my boy!",
-          prix: 20,
-        },
-        {
-          id: 4,
-          nom: "Tarte Tartin Pomme",
-          src: "tartetatinpomme.jpg",
-          description: "Eat healthy my boy!",
-          prix: 20,
-        },
-      ],
-      //Déclaration variable
-      menuGastronomique: [],
-      hordOeuvresMidi: [],
-      platsMidi: [],
-      path : null,
-      dessertsMidi: [],
-      boissonsMidi: [],
-      hordOeuvresGastrono: [],
-      platsGastrono: [],
-      prixMenuGastro :0,
-      prixMenuMidi :0,
-      dessertsGastrono: [],
-      prix: 0,
-      commandePage: false,
-    };
-  },
-  methods: {
-    //Obtenir menu midi
-    getmenuDemidi(min, max, tab, tab2) {
-      this.prix = 0;
+  methods :{
+    //Fonction qui permet d'avoir aléatoirement un menu de midi
+    getmenuDemidi(min,max,tab,tab2){
+      this.prix=0
       for (let index = 0; index < 3; index++) {
-        //Fonction random pour obtenir un entier aléatoire
+         //Fonction random qui donne 2 entiers
         min = Math.ceil(min);
         max = Math.floor(max);
-        var newIndex = Math.floor(Math.random() * (max - min)) + min;
-        for (let index1 = 0; index1 < tab.length; index1++) {
-          
-        //Vérification de si l'entier aléatoire n'a déja pas été pris précédemment
+        var newIndex=Math.floor(Math.random() * (max - min)) + min;
+        //Vérification de si l'entier donné n'existe pas déja
+        for (let index1= 0; index1 < tab.length; index1++) {
           while (newIndex === tab[index1]) {
-            newIndex = Math.floor(Math.random() * (max - min)) + min;
-            index1 = 0;
-          }
+            newIndex=Math.floor(Math.random() * (max - min)) + min;
+            index1=0;
+          }    
         }
-        tab.push(newIndex);
+        tab.push(newIndex)
         this.prix = this.prix + tab2[newIndex].prix;
-      }
-      return this.prix;
+      }    
+      return this.prix;   
     },
-    //Obtenir menu Gastronomique aléatoirement
-
-    getMenuGastronomique(min, max, tab, tab2) {
-      this.prix = 0;
+    
+    //Fonction qui permet d'avoir aléatoirement un menu gastronomique
+    getMenuGastronomique(min,max,tab,tab2){
+      this.prix=0
       for (let index = 0; index < 2; index++) {
-        //Fonction random pour obtenir un entier aléatoire
+        //Fonction random qui donne 2 entiers
         min = Math.ceil(min);
         max = Math.floor(max);
-        var newIndex = Math.floor(Math.random() * (max - min)) + min;
-        //Vérification de si l'entier aléatoire n'a déja pas été pris précédemment
-        for (let index1 = 0; index1 < tab.length; index1++) {
+        var newIndex=Math.floor(Math.random() * (max - min)) + min;
+        //Vérification de si l'entier donné n'existe pas déja
+        for (let index1= 0; index1 < tab.length; index1++) {
           while (newIndex === tab[index1]) {
-            newIndex = Math.floor(Math.random() * (max - min)) + min;
-            index1 = 0;
-          }
+            newIndex=Math.floor(Math.random() * (max - min)) + min;
+            index1=0;
+          }    
         }
-        tab.push(newIndex);
+        tab.push(newIndex)
         this.prix = this.prix + tab2[newIndex].prix;
-      }
+      }       
       return this.prix;
     },
-
-    //Nous alons faire une diminition de 20% sur les menus par rapport à la moyenne des sommes des prix initiaux
-    getPrix(x) {
-      x = x - x * 0.2;
-      return x;
-    },
-  },
-};
+    //Nous alons faire une diminition de 20% sur les menus par rapport à la somme des prix initiaux
+    getPrix(x){
+      x= x - x*0.2;
+      return x
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.md-card {
-  width: 550px;
-  display: inline-block;
-  vertical-align: top;
-  padding: auto;
+ .md-card {
+    width: 550px;
+    display: inline-block;
+    vertical-align: top;
+    padding: auto;
+  }
+  .viewport {
+    width: 550px;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    overflow: auto;
+    border: 1px solid lightblue !important;
+  }
+  button.md-button.md-raised.prix{
+    background: #f677a8cc;
+    color: black;
+ }
+ .md-toolbar.md-accent.infos {
+    margin-bottom: 25px;
+    text-align: center;
+    margin-top: 15px;
 }
-
-.viewport {
-  width: 550px;
-  max-width: 100%;
-  display: inline-block;
-  vertical-align: top;
-  overflow: auto;
-  border: 1px solid lightblue !important;
-}
-
-button.md-button.md-raised.prix {
-  background: #f677a8cc;
-  color: black;
-}
-.md-toolbar.md-accent.infos {
-  margin-bottom: 25px;
-  text-align: center;
-  margin-top: 15px;
-}
-
 i.infos {
-  font-size: 20px;
-  text-align: center;
-  margin-left: 100px;
-  color: black;
-  margin-top: 10px !important;
+    font-size: 20px;
+    text-align: center;
+    margin-left: 100px;
+    color: black;
+    margin-top: 10px !important;
 }
-.avatar .md-avatar {
-  margin: 0px !important;
+.avatar .md-avatar{
+    margin: 0px!important;
 }
-
 .md-avatar.md-large {
-  min-width: 84px;
-  min-height: 84px;
+    min-width: 84px;
+    min-height: 84px;
 }
-
 .md-toolbar-row.avatar {
-  margin: auto;
+    margin: auto;
 }
-
-.buttonInfo {
-  background: #f677a8cc !important ;
-  margin: 0 -10px;
-  padding: 4px;
+.buttonInfo  {
+    background: #f677a8cc !important ;
+    margin: 0 -10px;
+    padding: 4px;
 }
-
 .buttonInfo span {
-  color: black;
+    color: black;
 }
-
 .md-toolbar.md-large.diadie {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
-
 .partners {
-  font-weight: bold;
-  font-size: 20px;
+    font-weight: bold;
+    font-size: 20px;
 }
-
 .nom span {
   color: #db4155;
 }
 .nom b {
-  color: #3fcfd6;
+  color: #3FCFD6;
 }
 </style>
-

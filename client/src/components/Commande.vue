@@ -959,6 +959,7 @@ export default {
       activeRecapGastro: false,
       toolbarCom: true,
       commandePage: false,
+      infoRestoDiadieModal :false
     };
   },
   mounted() {
