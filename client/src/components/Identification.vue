@@ -1,231 +1,123 @@
 <template>
-  <div class="centered-container">
-    <md-content class="md-elevation-3">
-      <div class="title">
-        <div class="md-body-1">
-          Veuillez vous connectez pour acceder aux données du restaurant
-        </div>
-      </div>
+  <div><div class="formulaire">
+        <h1>Bienvenue!</h1>
 
-      <div class="form">
-        <md-field>
-          <label>Pseudo</label>
-          <md-input v-model="pseudo" name="pseudo"></md-input>
-        </md-field>
-        <md-field>
-          <label>Mot de passe</label>
-          <md-input v-model="pass" name="pass"></md-input>
-        </md-field>
-      </div>
+        <form @submit.prevent="login(pseudo,pass)">
+          <md-field>
+            <label>Pseudo</label>
+            <md-input v-model="pseudo" name="pseudo" placeholder="Pseudo" class="input"></md-input>
+          </md-field>
 
-      <div class="actions md-layout md-alignment-center-space-between">
-        <a href="">Reset password</a>
-        <router-link to="/">
-        <md-button class="md-raised md-primary" @click="auth">Log in</md-button>
-        </router-link>
-        
-      </div>
+          <md-field>
+            <label>Mot de passe</label>
+            <md-input v-model="pass" name="pass" placeholder="Mot de passe" class="input"></md-input>
+          </md-field>
 
-       <div>
-      <p v-if="afficherErreur" id="error">Ce pseudo existe déjà</p>
+          <md-button type=submit class="md-raised md-primary button input"  >Se connecter</md-button>  
+        </form>
     </div>
-
-      <div class="loading-overlay" v-if="loading">
-        <md-progress-spinner
-          md-mode="indeterminate"
-          :md-stroke="2"
-        ></md-progress-spinner>
-      </div>
-    </md-content>
-    <div class="background" />
-  </div>
-
+    <md-dialog-alert
+      :md-active.sync="impossible"
+      md-title="Connexion Impossible!"
+      md-content="<md-icon>info</md-icon><i class='infos'> Votre <b>pseudo</b> ou <b>mot de passe</b> est incorrect.</i> " />
+    </div>
+    
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
-export default {
-  name: "Identification",
-  data: () => ({
-    return: {
-      pseudo: "",
-      pass: "",
-      afficherErreur: false,
+  export default {
+    name: 'Identification',
+    props: {
     },
-  }),
+    data: () => ({
+      return: {
+        users : [],
+        impossible : true
+      },
+    }),
+    methods: {
+      login(ps,mdp){
+          let url = "http://localhost:8080/api/login/" + ps + "/" +mdp;
 
-  methods: {
-    ...mapActions(["Identification"]),
-    async submit() {
-      try {
-        const User = new FormData();
-        User.append("pseudo", this.pseudo);
-        User.append("password", this.pass);
-        await this.Identification(this.form);
-        this.$router.push("/posts");
-        this.afficherErreur = false;
-      } catch (error) {
-        this.afficherErreur = true;
-      }
+          fetch(url)
+            .then((responseJSON) => {
+              responseJSON.json().then((resJs) => {
+                console.log(resJs)
+                // Maintenant resJs est un vrai objet JavaScript
+                this.users = resJs.user;
+                console.log('bnh',this.users);
+                if (this.users!=null) {
+                  this.$router.push('listerestaurants')
+                } else {
+                  this.impossible=true;
+                  console.log(this.impossible)
+                }
+                
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+
+            
+
+      },
     },
-  },
-};
-</script>
-
-<style scoped>
-.centered-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  height: 100vh;
-}
-  .title {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-    img {
-      margin-bottom: 16px;
-      max-width: 80px;
-    }
+  };
   
-
-    .md-button {
-      margin: 0;
-    }
-  .form {
-    margin-bottom: 60px;
-  }
- 
-  .md-content {
-    z-index: 1;
-    padding: 40px;
-    width: 100%;
-    max-width: 400px;
-    position: relative;
-  }
-  .loading-overlay {
-    z-index: 10;
-    top: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-</style>
-
-<!-- <template>
-  <div class="centered-container">
-    <md-content class="md-elevation-3">
-
-      <div class="title">
-        <img src="https://vuematerial.io/assets/logo-color.png">
-        <div class="md-title">Vue Material</div>
-        <div class="md-body-1">Build beautiful apps with Material Design and Vue.js</div>
-      </div>
-
-      <div class="form">
-        <md-field>
-          <label>E-mail</label>
-          <md-input v-model="login.email" autofocus></md-input>
-        </md-field>
-
-        <md-field md-has-password>
-          <label>Password</label>
-          <md-input v-model="login.password" type="password"></md-input>
-        </md-field>
-      </div>
-
-      <div class="actions md-layout md-alignment-center-space-between">
-        <a href="/resetpassword">Reset password</a>
-        <md-button class="md-raised md-primary" @click="auth">Log in</md-button>
-      </div>
-
-      <div class="loading-overlay" v-if="loading">
-        <md-progress-spinner md-mode="indeterminate" :md-stroke="2"></md-progress-spinner>
-      </div>
-
-    </md-content>
-    <div class="background" />
-  </div>
-</template>
-
-<script>
-export default {
-  name: "App",
-  data() {
-    return {
-      loading: false,
-      login: {
-        email: "",
-        password: ""
-      }
-    };
-  },
-  methods: {
-    auth() {
-      // your code to login user
-      // this is only for example of loading
-      this.loading = true;
-      setTimeout(() => {
-        this.loading = false;
-      }, 5000);
-    }
-  }
-};
 </script>
 
-<style lang="scss">
-.centered-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  height: 100vh;
-  .title {
-    text-align: center;
-    margin-bottom: 30px;
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    .formulaire {
+        background: rgba(255, 255, 255, 0.4);
+        position: relative;
+        top: 20%;
+        left: 30%;
+        width: 40%;
+        text-align: center;
+        padding: 5px;
+        border-radius: 3rem;
+        box-shadow: 0px 0px 10px 0px;
+        padding-top: 3%;
+        padding-bottom: 5%;
+        font-family: 'Poppins', sans-serif;
+    }
+    h1 {
+        cursor: default;
+        user-select: none;
+    }
+    .input {
+        border-radius: 3rem;
+        border: none;
+        padding: 10px;
+        text-align: center;
+        outline: none;
+        margin: 10px;
+        width: 30%;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+    }
+    .input:hover {
+        box-shadow: 0px 0px 5px 0px;
+    }
+    .input:active {
+        box-shadow: 0px 0px 5px 0px;
+    }
+
+    .button {
+        cursor: pointer;
+        user-select: none;
+    }
     img {
-      margin-bottom: 16px;
-      max-width: 80px;
+        height: 2.2rem;
+        margin: 10px;
+        user-select: none;
     }
-  }
-  .actions {
-    .md-button {
-      margin: 0;
+    img:hover {
+        box-shadow: 0px 0px 5px 0px;
+        cursor: pointer;
+        border-radius: 200rem;
     }
-  }
-  .form {
-    margin-bottom: 60px;
-  }
- 
-  .md-content {
-    z-index: 1;
-    padding: 40px;
-    width: 100%;
-    max-width: 400px;
-    position: relative;
-  }
-  .loading-overlay {
-    z-index: 10;
-    top: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
 </style>
- */ -->

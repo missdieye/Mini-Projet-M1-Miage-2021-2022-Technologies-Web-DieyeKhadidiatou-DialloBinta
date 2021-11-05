@@ -1,7 +1,43 @@
 <template>
   <div >
+    <md-toolbar class="md-large diadie" v-if="this.path=='/menu'">
+      <div class="md-toolbar-row avatar md-toolbar-section-start">
+          <md-avatar class="md-large">
+          <img src="../assets/avatarResto.png" alt="Avatar">
+      </md-avatar>
+          <h3 class="md-title nom"><b>DIA<span>DIE</span></b></h3>
+      </div>
+      <div >
+          <i class="partners"> Notre partenaire officielle!</i>
+          <p>Ci-dessous les menus de Midi et Gastronomique du restaurant DIADIE.</p>
+      </div>
+      
+      <div class="info md-toolbar-section-end">
+          <md-button class=" buttonInfo md-raised" @click="infoRestoDiadieModal=true">
+          <md-icon>info</md-icon><span>Informations du Restaurant</span>
+          </md-button>
+          <md-dialog :md-active.sync="infoRestoDiadieModal">
+              <md-dialog-title>Informations du Restaurant</md-dialog-title>
+              
+                  <md-dialog-content>
+                  <md-list>
+                      <md-list-item >Nom : <code> <md-chip>DIADIE</md-chip></code></md-list-item>
+                      <md-list-item >Cuisine : <code> <md-chip>Nicoise</md-chip></code></md-list-item>
+                      <md-list-item >Adresse : <code> <md-chip>Route des Lucioles</md-chip></code></md-list-item>
+                      <md-list-item >Ville : <code> <md-chip>Sophia Antipolis</md-chip></code></md-list-item>
+                  </md-list>
+                  
+                  </md-dialog-content>
+
+                  <md-dialog-actions>
+                  <md-button class="md-primary" @click="infoRestoDiadieModal= false">Fermer</md-button>
+                  </md-dialog-actions>
+
+              </md-dialog>
+      </div>
+    </md-toolbar>
     <md-toolbar md-elevation="1" class="md-accent infos">
-    <i class="infos">Pour chaque menu, choisissez un<b> Hors d'Oeuvres</b> ,
+    <i class="infos">Pour chaque menu, vous aurez selon vos choix un<b> Hors d'Oeuvres</b> ,
      un <b>Plat</b> , un <b>Dessert</b>  et un <b>boisson</b>. Le tout pour un prix!</i> 
   </md-toolbar>
     <div class="viewport">
@@ -221,7 +257,9 @@ export default {
     this.prixMenuGastro=this.prixHOG+this.prixPlatsG+this.prixDG;
     this.prixMenuGastro=Math.round(this.prixMenuGastro*10)/10;
 
-    console.log('gjhgvbn,',this.prixMenuGastro, 'ghj',this.getPrix(this.prixMenuGastro))
+    //Récupérer le path en cours
+    this.path=this.$route.path;
+
     
   }, 
   data:function(){
@@ -280,7 +318,8 @@ export default {
         hordOeuvresGastrono : [],
         platsGastrono :[],
         dessertsGastrono : [],
-        prix : 0
+        prix : 0,
+        commandePage : false
       } 
   },
   methods :{
@@ -366,6 +405,44 @@ i.infos {
     margin-left: 100px;
     color: black;
     margin-top: 10px !important;
+}
+.avatar .md-avatar{
+    margin: 0px!important;
+}
+
+.md-avatar.md-large {
+    min-width: 84px;
+    min-height: 84px;
+}
+
+.md-toolbar-row.avatar {
+    margin: auto;
+}
+
+.buttonInfo  {
+    background: #f677a8cc !important ;
+    margin: 0 -10px;
+    padding: 4px;
+}
+
+.buttonInfo span {
+    color: black;
+}
+
+.md-toolbar.md-large.diadie {
+    margin-bottom: 50px;
+}
+
+.partners {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nom span {
+  color: #db4155;
+}
+.nom b {
+  color: #3FCFD6;
 }
 </style>
 

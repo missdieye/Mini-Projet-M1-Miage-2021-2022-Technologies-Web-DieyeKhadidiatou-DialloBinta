@@ -283,7 +283,8 @@ i.infos {
     text-align: center;
     color: black;
 }
-
-
+.md-toolbar.md-large.diadie {
+    display: none !important;
+}
 
 </style>

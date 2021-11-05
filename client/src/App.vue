@@ -3,8 +3,8 @@
     <md-app class="nav">
      <!--Header-->
 
-      <md-app-toolbar md-elevation="0">
-        <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
+      <md-app-toolbar class="horizontalNav" md-elevation="0">
+        <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible && this.path=='/'">
           <md-icon>menu</md-icon>
         </md-button>
         <span class="md-title">
@@ -14,7 +14,7 @@
       
      <!--Sidebar-->
 
-      <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini" class="sidebar">
+      <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini" class="sidebar" v-if="this.path=='/'">
         <md-toolbar class="md-transparent" md-elevation="0">
           <div class="md-toolbar-section-end">
             <md-button class="md-icon-button md-dense" @click="toggleMenu">
@@ -65,6 +65,10 @@ export default {
   data: () => ({
     menuVisible: false
   }),
+  mounted() {
+    //Récupérer le path en cours
+    this.path=this.$route.path;
+  },
     methods: {
       toggleMenu () {
         this.menuVisible = !this.menuVisible

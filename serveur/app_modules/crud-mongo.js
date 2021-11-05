@@ -91,41 +91,6 @@ exports.findRestaurants = async (page, pagesize, name) => {
     return reponse;
   }
 };
-// login
-exports.login = async (pseudo, motDePass) => {
-  let client = await MongoClient.connect(url, { useNewUrlParser: true });
-  let db = client.db(dbName);
-  let reponse;
-
-  try {
-    let utilisateurs;
-    let count;
-
-    let query = {
-    pseudo: pseudo,
-	  motDePass: motDePasse,  
-    };
-    utilisateurs = await db.collection("utilisateurs").find(query).toArray();
-    count = await db.collection("utilisateurs").find(query).count();
-
-    // On renvoie la réponse sous la forme d'une promesse (la fonction est async)
-    reponse = {
-      succes: true,
-      msg: "Utilisateur trouvé avec succès",
-      data: utilisateurs,
-      count: count,
-    };
-  } catch (err) {
-    reponse = {
-      succes: false,
-      error: err,
-      msg: "erreur lors du find",
-    };
-  } finally {
-    client.close();
-    return reponse;
-  }
-};
 
 exports.findRestaurantById = async (id) => {
   let client = await MongoClient.connect(url, { useNewUrlParser: true });
@@ -165,9 +130,8 @@ exports.createRestaurant = async (formData) => {
     let toInsert = {
       name: formData.nom,
       cuisine: formData.cuisine,
-      address:{
-        "street":formData.street},
-      borough : formData.borough
+      borough :formData.borough,
+      address: {'street' : formData.street}
     };
     let data = await db.collection("restaurants").insertOne(toInsert);
     reponse = {
@@ -242,6 +206,36 @@ exports.deleteRestaurant = async function (id, callback) {
       succes: false,
       error: err,
       msg: "Problème à la suppression",
+    };
+  } finally {
+    client.close();
+    return reponse;
+  }
+};
+
+// login Users
+exports.login= async (pseudo,motdepasse) => {
+  let client = await MongoClient.connect(url, { useNewUrlParser: true });
+  let db = client.db(dbName);
+  let reponse;
+
+  try {
+    let myquery = { pseudo : pseudo,password : motdepasse};
+
+    let data = await db.collection("users").findOne(myquery);
+
+    reponse = {
+      succes: true,
+      user: data,
+      error: null,
+      msg: "Details de l'utilisateur envoyés",
+    };
+  } catch (err) {
+    reponse = {
+      succes: false,
+      user: null,
+      error: err,
+      msg: "erreur lors du find",
     };
   } finally {
     client.close();

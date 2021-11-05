@@ -28,7 +28,7 @@ Vue.use(VueSweetalert2);
 const router = new VueRouter({
   routes:[
     {
-      path:'/',
+      path:'/listerestaurants',
       component: ListeDesRestaurants
     },
     {
@@ -49,7 +49,7 @@ const router = new VueRouter({
       component:Commande
     },
     {
-    path:'/identification',
+    path:'/',
     component: Identification,
      }
   ]
