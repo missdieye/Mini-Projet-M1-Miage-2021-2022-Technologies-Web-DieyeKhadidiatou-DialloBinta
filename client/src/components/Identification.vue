@@ -1,5 +1,8 @@
 <template>
   <div class="identification">
+    <div classe="titre_id"> <h1>Un clique! Un repas!</h1>
+    <h2>Connectez vous pour choisir le restaurant de votre  choix</h2></div>
+   
     <div class="formulaire">
         <h1>Bienvenue!</h1>
           <md-toolbar md-elevation="1" class="md-accent infos" v-if="this.impossible">
@@ -75,7 +78,7 @@
     .formulaire {
         background: rgba(255, 255, 255, 0.4);
         position: fixed;
-        top: 20%;
+        top: 30%;
         left: 30%;
         width: 40%;
         text-align: center;
@@ -85,6 +88,7 @@
         padding-top: 3%;
         padding-bottom: 5%;
         font-family: 'Poppins', sans-serif;
+        
     }
     h1 {
         cursor: default;
@@ -125,9 +129,13 @@
     }
 
     .identification{
-      background-image: url("../assets/background.jpg");
+      background-image: url("../assets/Plats_a_emporter\ clair\ de\ la\ plume.jpg");
     }
     div#mainContent {
       height: 520px !important;
+    }
+
+    .titre_id{
+      color :rgb(165, 85, 129) !important;
     }
 </style>
