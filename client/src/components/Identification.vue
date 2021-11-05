@@ -1,6 +1,10 @@
 <template>
-  <div><div class="formulaire">
+  <div class="identification">
+    <div class="formulaire">
         <h1>Bienvenue!</h1>
+          <md-toolbar md-elevation="1" class="md-accent infos" v-if="this.impossible">
+          <i class=''> <b>Connexion Impossible!</b> Votre <b>pseudo</b> ou <b>mot de passe</b> est incorrect.</i>  
+        </md-toolbar>
 
         <form @submit.prevent="login(pseudo,pass)">
           <md-field>
@@ -10,31 +14,26 @@
 
           <md-field>
             <label>Mot de passe</label>
-            <md-input v-model="pass" name="pass" placeholder="Mot de passe" class="input"></md-input>
+            <md-input v-model="pass" name="pass" type="password" placeholder="Mot de passe" class="input"></md-input>
           </md-field>
 
           <md-button type=submit class="md-raised md-primary button input"  >Se connecter</md-button>  
         </form>
     </div>
-    <md-dialog-alert
-      :md-active.sync="impossible"
-      md-title="Connexion Impossible!"
-      md-content="<md-icon>info</md-icon><i class='infos'> Votre <b>pseudo</b> ou <b>mot de passe</b> est incorrect.</i> " />
-    </div>
-    
+  </div>
 </template>
 
 <script>
   export default {
     name: 'Identification',
-    props: {
-    },
-    data: () => ({
-      return: {
+    data (){
+      return {
         users : [],
-        impossible : true
-      },
-    }),
+        pseudo : '',
+        pass : '',
+        impossible : false
+      }
+    },
     methods: {
       login(ps,mdp){
           let url = "http://localhost:8080/api/login/" + ps + "/" +mdp;
@@ -48,8 +47,8 @@
                 console.log('bnh',this.users);
                 if (this.users!=null) {
                   this.$router.push('listerestaurants')
+                  location.reload();
                 } else {
-                  this.impossible=true;
                   console.log(this.impossible)
                 }
                 
@@ -62,6 +61,9 @@
             
 
       },
+      test(){
+        console.log(this.impossible)
+      }
     },
   };
   
@@ -119,5 +121,9 @@
         box-shadow: 0px 0px 5px 0px;
         cursor: pointer;
         border-radius: 200rem;
+    }
+
+    .identification{
+      background-image: url("../assets/background.jpg");
     }
 </style>

@@ -37,9 +37,9 @@
       </div>
     </md-toolbar>
     <md-toolbar md-elevation="1" class="md-accent infos">
-    <i class="infos">Pour chaque menu, vous aurez selon vos choix un<b> Hors d'Oeuvres</b> ,
+      <i class="infos">Pour chaque menu, vous aurez selon vos choix un<b> Hors d'Oeuvres</b> ,
      un <b>Plat</b> , un <b>Dessert</b>  et un <b>boisson</b>. Le tout pour un prix!</i> 
-  </md-toolbar>
+    </md-toolbar>
     <div class="viewport">
       <md-toolbar :md-elevation="1">
         <span class="md-title">Menu de Midi</span>

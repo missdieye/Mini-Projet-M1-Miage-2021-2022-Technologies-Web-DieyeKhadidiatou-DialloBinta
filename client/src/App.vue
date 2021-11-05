@@ -4,17 +4,26 @@
      <!--Header-->
 
       <md-app-toolbar class="horizontalNav" md-elevation="0">
-        <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible && this.path=='/'">
+        <div class="md-toolbar-section-start">
+          <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible && this.path=='/'">
           <md-icon>menu</md-icon>
-        </md-button>
-        <span class="md-title">
-          <a href="./" class="logo"><b>DIA<span>DIE</span></b></a
-        ></span>
+          </md-button>
+          <span class="md-title">
+            <a href="./" class="logo"><b>DIA<span>DIE</span></b></a></span>
+        </div>
+        <div class="md-toolbar-section-end" v-if="this.path!=='/'">
+          <router-link class="deconnex" to="/" >
+            <md-button class="md-dense md-danger" @click="load()">
+                <md-icon>logout</md-icon> <span>Déconnexion</span>
+            </md-button>
+          </router-link>
+        </div>
+        
       </md-app-toolbar>
       
      <!--Sidebar-->
 
-      <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini" class="sidebar" v-if="this.path=='/'">
+      <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini" class="sidebar" v-if="this.path!=='/'">
         <md-toolbar class="md-transparent" md-elevation="0">
           <div class="md-toolbar-section-end">
             <md-button class="md-icon-button md-dense" @click="toggleMenu">
@@ -25,9 +34,9 @@
 
         <md-list class="listeMenu">
           <md-list-item >
-            <router-link to="/">
+            <router-link to="/listerestaurants">
               <md-icon>home</md-icon>
-              <span class="md-list-item-text">Home</span>
+              <span class="md-list-item-text">Accueil</span>
             </router-link>
           </md-list-item>
           <md-list-item >
@@ -62,16 +71,29 @@
 export default {
   name: "App",
   components: {},
-  data: () => ({
-    menuVisible: false
-  }),
+  props: {
+  },
+  data () {
+    return{
+      menuVisible: false,
+      path : null
+      }
+    
+  },
   mounted() {
     //Récupérer le path en cours
+    
     this.path=this.$route.path;
+    location.load()
+    console.log('ghjk',this.path)
   },
     methods: {
       toggleMenu () {
         this.menuVisible = !this.menuVisible
+      },
+      load(){
+        this.$router.push('/');
+        location.reload();
       }
     }
 };
@@ -149,5 +171,10 @@ a.logo b {
 
 .md-drawer.md-app-drawer.sidebar {
     background: linear-gradient(lightBlue, #f677a8cc) !important;
+}
+
+a.deconnex {
+    background-color: #e60000;
+    border-radius: 3rem;
 }
 </style>

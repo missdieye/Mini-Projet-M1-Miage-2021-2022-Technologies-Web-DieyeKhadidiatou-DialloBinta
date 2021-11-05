@@ -183,6 +183,7 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+      
     },
     chercherResto: _.debounce(function () {
       this.getRestaurantsFromServer();
@@ -233,6 +234,10 @@ export default {
 
             //On raffraichit la vue
             this.getRestaurantsFromServer();
+
+            //Allerte de succes 
+             this.$swal("Félicitation!", "Restaurant ajouté avec succès!", "success")
+             location.reload();
           });
         })
         .catch(function (err) {
@@ -269,6 +274,9 @@ export default {
           }
         })
     },
+    load(){
+      location.reload();
+    }
   },
 };
 </script>
