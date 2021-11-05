@@ -5,7 +5,7 @@
 
       <md-app-toolbar class="horizontalNav" md-elevation="0">
         <div class="md-toolbar-section-start">
-          <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible && this.path=='/'">
+          <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible && this.path!=='/'">
           <md-icon>menu</md-icon>
           </md-button>
           <span class="md-title">
