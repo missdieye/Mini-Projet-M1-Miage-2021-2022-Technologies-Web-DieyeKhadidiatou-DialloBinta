@@ -131,7 +131,7 @@ exports.createRestaurant = async (formData) => {
       name: formData.nom,
       cuisine: formData.cuisine,
       borough :formData.borough,
-      address: {'street' : formData.street}
+      "address.street" : formData.street
     };
     let data = await db.collection("restaurants").insertOne(toInsert);
     reponse = {

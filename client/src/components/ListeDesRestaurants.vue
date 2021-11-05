@@ -237,6 +237,7 @@ export default {
 
             //Allerte de succes 
              this.$swal("Félicitation!", "Restaurant ajouté avec succès!", "success")
+             //On raffraichit la page
              location.reload();
           });
         })

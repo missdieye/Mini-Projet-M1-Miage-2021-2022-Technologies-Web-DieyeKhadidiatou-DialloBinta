@@ -84,8 +84,6 @@ export default {
     //Récupérer le path en cours
     
     this.path=this.$route.path;
-    location.load()
-    console.log('ghjk',this.path)
   },
     methods: {
       toggleMenu () {

@@ -49,6 +49,7 @@
                   this.$router.push('listerestaurants')
                   location.reload();
                 } else {
+                  this.impossible=true;
                   console.log(this.impossible)
                 }
                 
@@ -73,7 +74,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
     .formulaire {
         background: rgba(255, 255, 255, 0.4);
-        position: relative;
+        position: fixed;
         top: 20%;
         left: 30%;
         width: 40%;
@@ -125,5 +126,8 @@
 
     .identification{
       background-image: url("../assets/background.jpg");
+    }
+    div#mainContent {
+      height: 520px !important;
     }
 </style>
